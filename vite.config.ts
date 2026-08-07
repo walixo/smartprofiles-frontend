@@ -3,6 +3,18 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
+/**
+ * Forwards same-origin `/api` to the backend, so the app works without
+ * `VITE_API_BASE_URL` set and without CORS. Shared by dev and preview because
+ * Vite keeps their proxy configuration separate.
+ */
+const API_PROXY = {
+  '/api': {
+    target: 'http://localhost:4100',
+    changeOrigin: true,
+  },
+};
+
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
@@ -25,13 +37,13 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    // Same-origin in development, so the app never needs CORS and the auth
-    // header travels exactly as it will in production.
-    proxy: {
-      '/api': {
-        target: 'http://localhost:4100',
-        changeOrigin: true,
-      },
-    },
+    proxy: API_PROXY,
+  },
+  // `server.proxy` does NOT apply to `vite preview`; it needs its own block.
+  // Without this, a preview build calling same-origin `/api` 404s on every
+  // request — which is how the built app is usually smoke-tested.
+  preview: {
+    port: 4173,
+    proxy: API_PROXY,
   },
 });

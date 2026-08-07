@@ -14,8 +14,26 @@ interface SuccessEnvelope<T> {
   data: T;
 }
 
+/**
+ * Where the API lives.
+ *
+ * Defaults to the same origin as the app, which is the simplest correct setup
+ * when a reverse proxy fronts both. Set `VITE_API_BASE_URL` to an absolute URL
+ * to point at a backend on a different origin — that path is cross-origin, so
+ * the origin must also appear in the backend's `CLIENT_ORIGIN` allowlist.
+ *
+ * Vite inlines this at build time, so it is a build-time choice, not runtime.
+ */
+const configuredBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
+
+// `??` alone is not enough: an env var set to an empty string (`VITE_API_BASE_URL=`,
+// or a CI variable that resolved to nothing) is not nullish, and would produce a
+// baseURL of '' — sending every call to `/health` instead of `/api/health`.
+export const API_BASE_URL =
+  configuredBaseUrl !== undefined && configuredBaseUrl.length > 0 ? configuredBaseUrl : '/api';
+
 export const apiClient: AxiosInstance = axios.create({
-  baseURL: '/api',
+  baseURL: API_BASE_URL,
   timeout: 20_000,
   headers: { 'Content-Type': 'application/json' },
 });
