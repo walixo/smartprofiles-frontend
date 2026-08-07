@@ -1,0 +1,276 @@
+@import 'tailwindcss';
+
+/* Class-based dark mode, toggled on <html> by the pre-paint script in index.html. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* ---------------------------------------------------------------------
+   * Brand — anchored on the Smart logo coral.
+   * The two supplied palette reds are steps on this same ramp, so brand
+   * depth (700/900) is drawn from the palette rather than invented.
+   * ------------------------------------------------------------------ */
+  --color-brand-50: #fef3f2;
+  --color-brand-100: #fde4e3;
+  --color-brand-200: #fbcdcd;
+  --color-brand-300: #f7a8a9;
+  --color-brand-400: #f47b7f;
+  --color-brand-500: #f0555a; /* ← logo coral. PRIMARY. Correct this one line if the exact hex differs. */
+  --color-brand-600: #d9434a;
+  --color-brand-700: #c44536; /* supplied palette red */
+  --color-brand-800: #9c3a2c;
+  --color-brand-900: #772e25; /* supplied palette dark */
+  --color-brand-950: #4a1c16;
+
+  /* Accent — supplied orange F79328 */
+  --color-accent-50: #fff7ed;
+  --color-accent-100: #fdecd3;
+  --color-accent-200: #fbd6a5;
+  --color-accent-300: #f9bb6d;
+  --color-accent-400: #f8a648;
+  --color-accent-500: #f79328;
+  --color-accent-600: #de7714;
+  --color-accent-700: #b85b12;
+  --color-accent-800: #914816;
+  --color-accent-900: #763c15;
+  --color-accent-950: #401d07;
+
+  /* Highlight — supplied yellow E4CE54 */
+  --color-highlight-50: #fdfcec;
+  --color-highlight-100: #faf6cb;
+  --color-highlight-200: #f5eb9b;
+  --color-highlight-300: #eedd6c;
+  --color-highlight-400: #e4ce54;
+  --color-highlight-500: #d2b734;
+  --color-highlight-600: #b69429;
+  --color-highlight-700: #916f24;
+  --color-highlight-800: #785a25;
+  --color-highlight-900: #664b23;
+  --color-highlight-950: #3a2810;
+
+  /* Sand — supplied cream EDDDD4. Light-theme surfaces. */
+  --color-sand-50: #fbf8f6;
+  --color-sand-100: #f6f0eb;
+  --color-sand-200: #edddd4;
+  --color-sand-300: #dfc6b8;
+  --color-sand-400: #cca792;
+  --color-sand-500: #bb8b72;
+  --color-sand-600: #a87360;
+  --color-sand-700: #8c5c50;
+  --color-sand-800: #734e46;
+  --color-sand-900: #5f423c;
+  --color-sand-950: #32211d;
+
+  /* Ink — warm neutrals. Text in light theme, surfaces in dark theme.
+   * Deliberately warm-tinted; a cool grey ramp reads as dirty next to this palette. */
+  --color-ink-50: #faf8f7;
+  --color-ink-100: #f1edeb;
+  --color-ink-200: #e2dad7;
+  --color-ink-300: #cbbfba;
+  --color-ink-400: #a89893;
+  --color-ink-500: #8a7972;
+  --color-ink-600: #71605a;
+  --color-ink-700: #5c4e4a;
+  --color-ink-800: #4a3f3c;
+  --color-ink-900: #2d2523;
+  --color-ink-950: #1b1513;
+
+  /* ---------------------------------------------------------------------
+   * Semantic — success and info are the two hexes added outside the supplied
+   * palette, approved because coral cannot legibly mean "brand" and "error"
+   * at once. Status feedback ONLY: never brand surfaces, chrome or CTAs.
+   * ------------------------------------------------------------------ */
+  --color-success-50: #edf7f0;
+  --color-success-100: #d5eddd;
+  --color-success-200: #addcbe;
+  --color-success-300: #7ec59a;
+  --color-success-400: #55ac79;
+  --color-success-500: #38905f;
+  --color-success-600: #2a744c;
+  --color-success-700: #235c3e;
+  --color-success-800: #1e4a33;
+  --color-success-900: #183b2a;
+  --color-success-950: #0c2117;
+
+  --color-info-50: #ecf4f9;
+  --color-info-100: #d3e6f1;
+  --color-info-200: #a9cde2;
+  --color-info-300: #78aece;
+  --color-info-400: #4e8fb6;
+  --color-info-500: #33739b;
+  --color-info-600: #275c7e;
+  --color-info-700: #224c67;
+  --color-info-800: #1f4055;
+  --color-info-900: #1b3648;
+  --color-info-950: #0f1f2b;
+
+  /* Warning and danger reuse the supplied palette — no new hues needed. */
+  --color-warning-50: var(--color-accent-50);
+  --color-warning-100: var(--color-accent-100);
+  --color-warning-400: var(--color-accent-400);
+  --color-warning-500: var(--color-accent-500);
+  --color-warning-600: var(--color-accent-600);
+  --color-warning-900: var(--color-accent-900);
+
+  --color-danger-50: var(--color-brand-50);
+  --color-danger-100: var(--color-brand-100);
+  --color-danger-400: var(--color-brand-400);
+  --color-danger-500: var(--color-brand-600);
+  --color-danger-600: var(--color-brand-700);
+  --color-danger-900: var(--color-brand-900);
+
+  /* Radii */
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.75rem;
+
+  /* Shadows — tinted with the palette's dark red rather than neutral black,
+   * which keeps elevation from looking grey against the sand surfaces. */
+  --shadow-soft: 0 1px 2px rgb(119 46 37 / 0.06), 0 4px 14px -4px rgb(119 46 37 / 0.1);
+  --shadow-lifted: 0 2px 4px rgb(119 46 37 / 0.05), 0 18px 40px -12px rgb(119 46 37 / 0.2);
+  --shadow-glow: 0 0 0 1px rgb(240 85 90 / 0.3), 0 10px 30px -8px rgb(240 85 90 / 0.45);
+
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif;
+
+  /* ---------------------------------------------------------------------
+   * Motion.
+   * Entrances use an ease-out-quint so they decelerate into place; `pop` is
+   * deliberately overshooting for things that should feel physical. Ambient
+   * loops are slow and low-amplitude so they read as life, not distraction.
+   * The reduced-motion block below neutralises all of it.
+   * ------------------------------------------------------------------ */
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.5s ease-out both;
+  --animate-pop: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-sway: sway 7s ease-in-out infinite;
+  --animate-draw: draw 1.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  --animate-shimmer: shimmer 1.8s linear infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-0.6rem);
+    }
+  }
+
+  @keyframes sway {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate3d(0.4rem, -0.5rem, 0) rotate(1.5deg);
+    }
+  }
+
+  /* Paired with an inline stroke-dasharray on the path being drawn. */
+  @keyframes draw {
+    from {
+      stroke-dashoffset: var(--draw-length, 400);
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes shimmer {
+    from {
+      background-position: -150% 0;
+    }
+    to {
+      background-position: 250% 0;
+    }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-sand-50);
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html.dark body {
+    background-color: var(--color-ink-950);
+    color: var(--color-sand-100);
+  }
+
+  ::selection {
+    background-color: var(--color-brand-200);
+    color: var(--color-brand-900);
+  }
+
+  html.dark ::selection {
+    background-color: var(--color-brand-700);
+    color: var(--color-sand-50);
+  }
+
+  /* One consistent focus treatment everywhere, visible on both themes. */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Smart Profiles — the profile platform for the SMART freelance community in Europe." />
+    <meta name="theme-color" content="#F0555A" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1B1513" media="(prefers-color-scheme: dark)" />
+    <title>Smart Profiles</title>
+    <script>
+      // Pre-paint: resolve theme and language before first paint so the page
+      // never flashes the wrong theme. Kept inline and dependency-free on
+      // purpose — this must run before the bundle loads.
+      (function () {
+        try {
+          var stored = localStorage.getItem('smart-theme');
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+          document.documentElement.classList.toggle('dark', theme === 'dark');
+          document.documentElement.style.colorScheme = theme;
+        } catch (error) {
+          /* Private mode or blocked storage: fall through to the light default. */
+        }
+        try {
+          var locale = localStorage.getItem('smart-locale');
+          if (locale) {
+            document.documentElement.lang = locale;
+          }
+        } catch (error) {
+          /* Ignore. */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
