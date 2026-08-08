@@ -379,4 +379,16 @@ export const en = {
   'error.CANNOT_MESSAGE_SELF': 'You cannot message your own profile.',
   'error.CHAT_NOT_ACCEPTED': 'This freelancer is not accepting messages.',
   'error.THREAD_NOT_FOUND': 'We could not find that conversation.',
+
+  'upload.choose': 'Upload an image',
+  'upload.replace': 'Replace',
+  'upload.remove': 'Remove',
+  'upload.uploading': 'Uploading… {percent}%',
+  'upload.dropHint': 'Drag an image here, or click to choose',
+  'upload.orPasteUrl': 'Or paste an image URL',
+  'upload.tooLarge': 'That image is larger than {limit}.',
+  'upload.wrongType': 'Use a JPG, PNG, WebP or AVIF image.',
+  'upload.failed': 'Upload failed. Please try again.',
+  'upload.disabledHint': 'Uploads are not configured — paste an image URL instead.',
+  'upload.preview': 'Image preview',
 } as const;

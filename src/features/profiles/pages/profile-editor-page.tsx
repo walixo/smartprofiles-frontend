@@ -38,6 +38,7 @@ import type { OwnerProfile, UpdateProfilePayload } from '../api/owner.api';
 import { ClaimProfileForm } from '../components/claim-profile-form';
 import { HandleField } from '../components/handle-field';
 import { WorksManager } from '../components/works-manager';
+import { ImageUploadField } from '@/features/uploads/components/image-upload-field';
 import { useOwnProfile, useOwnWorks, useSetVisibility, useUpdateProfile } from '../hooks/use-own-profile';
 
 export function ProfileEditorPage() {
@@ -165,21 +166,23 @@ function EditorForm({ profile }: { profile: OwnerProfile }) {
               onChange={(e) => patch('headline', e.target.value)}
               error={fieldErrors.headline}
             />
-            <div className="grid gap-4 sm:grid-cols-2">
-              <TextField
+            <div className="grid gap-5 sm:grid-cols-2">
+              <ImageUploadField
                 id="edit-avatar"
+                kind="avatar"
                 label={t('editor.field.avatarUrl')}
-                placeholder="https://…"
+                previewClassName="aspect-square"
                 value={form.avatarUrl}
-                onChange={(e) => patch('avatarUrl', e.target.value)}
+                onChange={(url) => patch('avatarUrl', url)}
                 error={fieldErrors.avatarUrl}
               />
-              <TextField
+              <ImageUploadField
                 id="edit-cover"
+                kind="cover"
                 label={t('editor.field.coverUrl')}
-                placeholder="https://…"
+                previewClassName="aspect-[3/1]"
                 value={form.coverUrl}
-                onChange={(e) => patch('coverUrl', e.target.value)}
+                onChange={(url) => patch('coverUrl', url)}
                 error={fieldErrors.coverUrl}
               />
             </div>

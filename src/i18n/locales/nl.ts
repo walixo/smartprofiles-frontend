@@ -350,4 +350,16 @@ export const nl: Translations = {
   'error.CANNOT_MESSAGE_SELF': 'Je kunt je eigen profiel geen bericht sturen.',
   'error.CHAT_NOT_ACCEPTED': 'Deze freelancer accepteert geen berichten.',
   'error.THREAD_NOT_FOUND': 'We konden dat gesprek niet vinden.',
+
+  'upload.choose': 'Afbeelding uploaden',
+  'upload.replace': 'Vervangen',
+  'upload.remove': 'Verwijderen',
+  'upload.uploading': 'Uploaden… {percent}%',
+  'upload.dropHint': 'Sleep een afbeelding hierheen, of klik om te kiezen',
+  'upload.orPasteUrl': 'Of plak een afbeeldings-URL',
+  'upload.tooLarge': 'Die afbeelding is groter dan {limit}.',
+  'upload.wrongType': 'Gebruik een JPG-, PNG-, WebP- of AVIF-afbeelding.',
+  'upload.failed': 'Uploaden mislukt. Probeer het opnieuw.',
+  'upload.disabledHint': 'Uploaden is niet geconfigureerd — plak in plaats daarvan een URL.',
+  'upload.preview': 'Voorbeeld van afbeelding',
 };

@@ -351,4 +351,16 @@ export const de: Translations = {
   'error.CANNOT_MESSAGE_SELF': 'Du kannst deinem eigenen Profil keine Nachricht schicken.',
   'error.CHAT_NOT_ACCEPTED': 'Diese Freelancerin nimmt keine Nachrichten an.',
   'error.THREAD_NOT_FOUND': 'Wir konnten diese Unterhaltung nicht finden.',
+
+  'upload.choose': 'Bild hochladen',
+  'upload.replace': 'Ersetzen',
+  'upload.remove': 'Entfernen',
+  'upload.uploading': 'Wird hochgeladen… {percent} %',
+  'upload.dropHint': 'Bild hierher ziehen oder klicken zum Auswählen',
+  'upload.orPasteUrl': 'Oder eine Bild-URL einfügen',
+  'upload.tooLarge': 'Dieses Bild ist größer als {limit}.',
+  'upload.wrongType': 'Verwende ein JPG-, PNG-, WebP- oder AVIF-Bild.',
+  'upload.failed': 'Upload fehlgeschlagen. Bitte erneut versuchen.',
+  'upload.disabledHint': 'Uploads sind nicht konfiguriert — füge stattdessen eine URL ein.',
+  'upload.preview': 'Bildvorschau',
 };

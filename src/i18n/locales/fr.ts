@@ -351,4 +351,16 @@ export const fr: Translations = {
   'error.CANNOT_MESSAGE_SELF': 'Vous ne pouvez pas écrire à votre propre profil.',
   'error.CHAT_NOT_ACCEPTED': 'Ce freelance n’accepte pas les messages.',
   'error.THREAD_NOT_FOUND': 'Nous n’avons pas trouvé cette conversation.',
+
+  'upload.choose': 'Téléverser une image',
+  'upload.replace': 'Remplacer',
+  'upload.remove': 'Supprimer',
+  'upload.uploading': 'Téléversement… {percent} %',
+  'upload.dropHint': 'Glissez une image ici, ou cliquez pour choisir',
+  'upload.orPasteUrl': 'Ou collez l’URL d’une image',
+  'upload.tooLarge': 'Cette image dépasse {limit}.',
+  'upload.wrongType': 'Utilisez une image JPG, PNG, WebP ou AVIF.',
+  'upload.failed': 'Échec du téléversement. Veuillez réessayer.',
+  'upload.disabledHint': 'Le téléversement n’est pas configuré — collez plutôt une URL.',
+  'upload.preview': 'Aperçu de l’image',
 };

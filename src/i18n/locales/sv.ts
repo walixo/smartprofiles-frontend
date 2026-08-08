@@ -350,4 +350,16 @@ export const sv: Translations = {
   'error.CANNOT_MESSAGE_SELF': 'Du kan inte meddela din egen profil.',
   'error.CHAT_NOT_ACCEPTED': 'Den här frilansaren tar inte emot meddelanden.',
   'error.THREAD_NOT_FOUND': 'Vi kunde inte hitta den konversationen.',
+
+  'upload.choose': 'Ladda upp en bild',
+  'upload.replace': 'Ersätt',
+  'upload.remove': 'Ta bort',
+  'upload.uploading': 'Laddar upp… {percent} %',
+  'upload.dropHint': 'Dra en bild hit, eller klicka för att välja',
+  'upload.orPasteUrl': 'Eller klistra in en bild-URL',
+  'upload.tooLarge': 'Den bilden är större än {limit}.',
+  'upload.wrongType': 'Använd en JPG-, PNG-, WebP- eller AVIF-bild.',
+  'upload.failed': 'Uppladdningen misslyckades. Försök igen.',
+  'upload.disabledHint': 'Uppladdning är inte konfigurerad — klistra in en URL i stället.',
+  'upload.preview': 'Förhandsvisning av bild',
 };

@@ -8,6 +8,7 @@ import { TextField } from '@/components/ui/text-field';
 import { useI18n } from '@/i18n/i18n-provider';
 import { WORK_VISIBILITIES, type WorkVisibility } from '@/shared/vocabulary';
 import type { OwnerWork, WorkPayload } from '../api/owner.api';
+import { ImageUploadField } from '@/features/uploads/components/image-upload-field';
 import { useWorkMutations } from '../hooks/use-own-profile';
 
 interface Draft {
@@ -182,12 +183,13 @@ export function WorksManager({ works }: { works: OwnerWork[] }) {
               value={draft.clientName}
               onChange={(e) => setDraft({ ...draft, clientName: e.target.value })}
             />
-            <TextField
+            <ImageUploadField
               id="work-cover"
+              kind="work"
               label={t('editor.work.cover')}
-              placeholder="https://…"
+              previewClassName="aspect-[4/3]"
               value={draft.coverImage}
-              onChange={(e) => setDraft({ ...draft, coverImage: e.target.value })}
+              onChange={(url) => setDraft({ ...draft, coverImage: url })}
             />
             <TextField
               id="work-url"
