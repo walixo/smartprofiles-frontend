@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '@/features/auth/auth-provider';
+import { detectViewSource } from '@/features/analytics/lib/view-source';
 import { fetchProfileByHandle, type PublicProfile } from '../api/profile.api';
 
 /**
@@ -11,9 +13,17 @@ export function useProfile(handle: string) {
   const { user } = useAuth();
   const viewerKey = user?.id ?? 'anonymous';
 
+  // Resolved once per mount, before any client-side navigation can overwrite
+  // `document.referrer` — otherwise a QR arrival would be misattributed.
+  const [source] = useState(() =>
+    detectViewSource(window.location.search, document.referrer, window.location.origin),
+  );
+
   return useQuery<{ profile: PublicProfile }>({
+    // `source` is intentionally NOT in the key: it is an attribution detail,
+    // not a different resource, and including it would split the cache.
     queryKey: ['profiles', handle, viewerKey],
-    queryFn: () => fetchProfileByHandle(handle),
+    queryFn: () => fetchProfileByHandle(handle, source),
     retry: false,
   });
 }

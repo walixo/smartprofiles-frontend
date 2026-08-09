@@ -38,6 +38,7 @@ import type { OwnerProfile, UpdateProfilePayload } from '../api/owner.api';
 import { ClaimProfileForm } from '../components/claim-profile-form';
 import { HandleField } from '../components/handle-field';
 import { WorksManager } from '../components/works-manager';
+import { AnalyticsPanel } from '@/features/analytics/components/analytics-panel';
 import { ImageUploadField } from '@/features/uploads/components/image-upload-field';
 import { useOwnProfile, useOwnWorks, useSetVisibility, useUpdateProfile } from '../hooks/use-own-profile';
 
@@ -400,6 +401,8 @@ function EditorForm({ profile }: { profile: OwnerProfile }) {
               onChange={(next) => patch('allowChat', next)}
             />
           </EditorSection>
+
+          <AnalyticsPanel />
 
           {works.data ? <WorksManager works={works.data.works} /> : null}
         </div>

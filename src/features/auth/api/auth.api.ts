@@ -1,4 +1,4 @@
-import { apiGet, apiPost } from '@/lib/api-client';
+import { apiGet, apiPatch, apiPost } from '@/lib/api-client';
 import type { LocaleCode, Role, SelfServeRole, UserStatus } from '@/shared/vocabulary';
 
 /** Mirrors the backend's `PublicUser` DTO. */
@@ -9,6 +9,7 @@ export interface AuthUser {
   displayName: string;
   status: UserStatus;
   locale: LocaleCode;
+  avatarUrl?: string;
   createdAt: string;
 }
 
@@ -40,4 +41,15 @@ export function login(payload: LoginPayload): Promise<AuthResult> {
 
 export function fetchCurrentUser(): Promise<{ user: AuthUser }> {
   return apiGet<{ user: AuthUser }>('/auth/me');
+}
+
+export interface UpdateMePayload {
+  displayName?: string;
+  locale?: LocaleCode;
+  /** `''` clears the avatar. */
+  avatarUrl?: string;
+}
+
+export function updateCurrentUser(payload: UpdateMePayload): Promise<{ user: AuthUser }> {
+  return apiPatch<{ user: AuthUser }>('/auth/me', payload);
 }

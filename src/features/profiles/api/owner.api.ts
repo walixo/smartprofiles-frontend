@@ -56,6 +56,8 @@ export type CreateProfilePayload = {
   headline: string;
   disciplines: DisciplineSlug[];
   country: CountryCode;
+  /** Optional at claim time; the server falls back to the account avatar. */
+  avatarUrl?: string;
 };
 
 export type UpdateProfilePayload = Partial<

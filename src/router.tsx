@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router';
 import { RootLayout } from '@/components/layout/root-layout';
-import { RequireAuth, RequireGuest } from '@/features/auth/components/route-guards';
+import { RequireAuth, RequireGuest, RequireRole } from '@/features/auth/components/route-guards';
 import { RouteErrorPage } from '@/pages/route-error-page';
 
 /**
@@ -24,6 +24,17 @@ export const router = createBrowserRouter([
       {
         index: true,
         lazy: async () => ({ Component: (await import('@/pages/home-page')).HomePage }),
+      },
+      {
+        element: <RequireRole roles={['admin']} />,
+        children: [
+          {
+            path: 'admin',
+            lazy: async () => ({
+              Component: (await import('@/features/admin/pages/admin-page')).AdminPage,
+            }),
+          },
+        ],
       },
       {
         path: 'browse',

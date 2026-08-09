@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import { Badge } from '@/components/ui/badge';
-import { ChevronDownIcon, SignOutIcon, UserIcon } from '@/components/ui/icons';
+import { ChevronDownIcon, ShieldIcon, SignOutIcon, UserIcon } from '@/components/ui/icons';
 import { useI18n } from '@/i18n/i18n-provider';
 import type { TranslationKey } from '@/i18n/types';
 import { cn } from '@/lib/cn';
@@ -91,6 +91,18 @@ export function AccountMenu({ className }: { className?: string }) {
           </div>
 
           <div className="my-1 h-px bg-sand-200 dark:bg-ink-800" />
+
+          {user.role === 'admin' ? (
+            <Link
+              to="/admin"
+              role="menuitem"
+              onClick={() => close(false)}
+              className="flex w-full items-center gap-2.5 rounded-2xl px-3.5 py-2.5 text-sm font-medium text-ink-700 outline-none hover:bg-ink-100 focus-visible:bg-ink-100 dark:text-sand-200 dark:hover:bg-ink-800"
+            >
+              <ShieldIcon size={17} />
+              {t('admin.nav')}
+            </Link>
+          ) : null}
 
           <Link
             to="/me"

@@ -7,6 +7,7 @@ import type {
   LanguageLevel,
   LinkKind,
   LocaleCode,
+  ViewSource,
 } from '@/shared/vocabulary';
 
 export interface PublicWork {
@@ -49,6 +50,9 @@ export interface PublicProfile {
   works: PublicWork[];
 }
 
-export function fetchProfileByHandle(handle: string): Promise<{ profile: PublicProfile }> {
-  return apiGet<{ profile: PublicProfile }>(`/profiles/${encodeURIComponent(handle)}`);
+export function fetchProfileByHandle(
+  handle: string,
+  source: ViewSource,
+): Promise<{ profile: PublicProfile }> {
+  return apiGet<{ profile: PublicProfile }>(`/profiles/${encodeURIComponent(handle)}`, { source });
 }

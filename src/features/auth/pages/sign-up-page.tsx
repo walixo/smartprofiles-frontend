@@ -1,6 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { Controller, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router';
+import { AvatarPicker } from '@/features/uploads/components/avatar-picker';
+import { uploadImage } from '@/features/uploads/api/upload.api';
+import { currentUserQueryKey } from '../auth-provider';
+import { updateCurrentUser } from '../api/auth.api';
 import { Alert } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { AuthAssembleIllustration } from '@/components/ui/illustrations';
@@ -17,6 +23,7 @@ export function SignUpPage() {
   const { t, locale } = useI18n();
   const { signUp } = useAuth();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(buildRegisterSchema()),
@@ -26,9 +33,32 @@ export function SignUpPage() {
 
   const { formError, submit, isSubmitting } = useAuthSubmit(form);
 
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
+  const [avatarWarning, setAvatarWarning] = useState<string | null>(null);
+
   const onSubmit = submit(async (values) => {
     // Seed the account with the language they actually signed up in.
     await signUp({ ...values, locale });
+
+    // The avatar can only be uploaded now: minting a signature needs the token
+    // that registration just returned.
+    if (avatarFile) {
+      setIsUploadingAvatar(true);
+      try {
+        const uploaded = await uploadImage('avatar', avatarFile);
+        await updateCurrentUser({ avatarUrl: uploaded.url });
+        await queryClient.invalidateQueries({ queryKey: currentUserQueryKey });
+      } catch {
+        // The account exists and the session is live — failing the whole signup
+        // over a photo would be the wrong trade. Tell them, and continue.
+        setAvatarWarning(t('auth.signUp.avatarFailed'));
+        setIsUploadingAvatar(false);
+        return;
+      }
+      setIsUploadingAvatar(false);
+    }
+
     void navigate('/', { replace: true });
   });
 
@@ -55,6 +85,14 @@ export function SignUpPage() {
     >
       <form onSubmit={onSubmit} noValidate className="space-y-5">
         {formError ? <Alert tone="danger">{formError}</Alert> : null}
+        {avatarWarning ? (
+          <Alert tone="warning">
+            {avatarWarning}{' '}
+            <Link to="/me" className="font-semibold underline underline-offset-2">
+              {t('editor.title')}
+            </Link>
+          </Alert>
+        ) : null}
 
         <Controller
           control={form.control}
@@ -67,6 +105,14 @@ export function SignUpPage() {
               error={resolveMessage(fieldState.error?.message, t)}
             />
           )}
+        />
+
+        <AvatarPicker
+          file={avatarFile}
+          onSelect={setAvatarFile}
+          isUploading={isUploadingAvatar}
+          label={t('auth.signUp.avatar')}
+          hint={t('auth.signUp.avatarHint')}
         />
 
         <TextField
@@ -100,7 +146,7 @@ export function SignUpPage() {
           {...form.register('password')}
         />
 
-        <Button type="submit" size="lg" isLoading={isSubmitting} className="w-full">
+        <Button type="submit" size="lg" isLoading={isSubmitting || isUploadingAvatar} className="w-full">
           {t('auth.signUp.submit')}
         </Button>
       </form>

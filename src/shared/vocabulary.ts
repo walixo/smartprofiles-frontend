@@ -75,6 +75,15 @@ export type MediaKind = (typeof MEDIA_KINDS)[number];
 export const THREAD_STATUSES = ['open', 'archived'] as const;
 export type ThreadStatus = (typeof THREAD_STATUSES)[number];
 
+/**
+ * How a visitor arrived at a public profile.
+ *
+ * `qr` is the one that earns its keep — it tells a freelancer whether the code
+ * on their badge actually got scanned at an event, which no other signal shows.
+ */
+export const VIEW_SOURCES = ['qr', 'browse', 'internal', 'external', 'direct'] as const;
+export type ViewSource = (typeof VIEW_SOURCES)[number];
+
 /** Currency used for display when a profile has not chosen one, keyed by market. */
 export const DEFAULT_CURRENCY_BY_COUNTRY: Record<CountryCode, Currency> = {
   BE: 'EUR',

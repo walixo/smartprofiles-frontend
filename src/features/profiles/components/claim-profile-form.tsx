@@ -9,18 +9,23 @@ import { useI18n } from '@/i18n/i18n-provider';
 import type { TranslationKey } from '@/i18n/types';
 import { isApiRequestError } from '@/lib/api-error';
 import { COUNTRIES, DISCIPLINES, type CountryCode, type DisciplineSlug } from '@/shared/vocabulary';
+import { useAuth } from '@/features/auth/auth-provider';
+import { ImageUploadField } from '@/features/uploads/components/image-upload-field';
 import { useCreateProfile } from '../hooks/use-own-profile';
 import { HandleField } from './handle-field';
 
 /** First-run form: claim the handle and the three fields publishing requires. */
 export function ClaimProfileForm() {
   const { t } = useI18n();
+  const { user } = useAuth();
   const create = useCreateProfile();
 
   const [handle, setHandle] = useState('');
   const [headline, setHeadline] = useState('');
   const [country, setCountry] = useState<CountryCode>('BE');
   const [disciplines, setDisciplines] = useState<DisciplineSlug[]>([]);
+  // Prefilled from the account avatar chosen at signup, if there was one.
+  const [avatarUrl, setAvatarUrl] = useState(user?.avatarUrl ?? '');
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [formError, setFormError] = useState<string | null>(null);
 
@@ -30,7 +35,7 @@ export function ClaimProfileForm() {
     setFormError(null);
 
     try {
-      await create.mutateAsync({ handle, headline, country, disciplines });
+      await create.mutateAsync({ handle, headline, country, disciplines, avatarUrl });
     } catch (error) {
       if (!isApiRequestError(error)) {
         setFormError(t('error.UNKNOWN_ERROR'));
@@ -64,6 +69,16 @@ export function ClaimProfileForm() {
           </div>
 
           {formError ? <Alert tone="danger">{formError}</Alert> : null}
+
+          <ImageUploadField
+            id="claim-avatar"
+            kind="avatar"
+            label={t('editor.claim.avatar')}
+            previewClassName="aspect-square max-h-44"
+            value={avatarUrl}
+            onChange={setAvatarUrl}
+            error={fieldErrors.avatarUrl}
+          />
 
           <HandleField id="claim-handle" value={handle} onChange={setHandle} error={fieldErrors.handle} />
 
