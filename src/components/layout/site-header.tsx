@@ -43,7 +43,7 @@ export function SiteHeader() {
   }, [isMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-sand-200/80 bg-sand-50/85 backdrop-blur-md dark:border-ink-800 dark:bg-ink-950/85">
+    <header className="sticky top-0 z-40 border-b-4 edge bg-paper-100 dark:bg-ink-950">
       <Container>
         <div className="flex h-18 items-center justify-between gap-4">
           <Link to="/" className="rounded-2xl" aria-label="Smart Profiles — home">
@@ -55,7 +55,7 @@ export function SiteHeader() {
               <Link
                 key={item.to}
                 to={item.to}
-                className="rounded-full px-4 py-2 text-sm font-medium text-ink-600 transition-colors hover:bg-ink-100 hover:text-ink-900 dark:text-sand-300 dark:hover:bg-ink-800 dark:hover:text-sand-50"
+                className="rounded-none border-2 border-transparent px-3 py-1.5 text-xs font-black uppercase tracking-wide text-ink-950 hover:edge hover:bg-brick-500 hover:text-white dark:text-paper-100 dark:hover:bg-brick-500 dark:hover:text-white"
               >
                 {t(item.key)}
               </Link>
@@ -90,7 +90,7 @@ export function SiteHeader() {
               aria-expanded={isMenuOpen}
               aria-controls="mobile-navigation"
               aria-label={isMenuOpen ? t('common.close') : t('common.menu')}
-              className="inline-flex size-10 items-center justify-center rounded-full text-ink-700 transition-colors hover:bg-ink-100 dark:text-sand-200 dark:hover:bg-ink-800"
+              className="inline-flex size-10 items-center justify-center rounded-none text-ink-700 transition-colors hover:bg-ink-100 dark:text-paper-100 dark:hover:bg-ink-800"
             >
               {isMenuOpen ? <CloseIcon size={21} /> : <MenuIcon size={21} />}
             </button>
@@ -101,20 +101,20 @@ export function SiteHeader() {
       <div
         id="mobile-navigation"
         hidden={!isMenuOpen}
-        className={cn('border-t border-sand-200 bg-sand-50 md:hidden dark:border-ink-800 dark:bg-ink-950')}
+        className={cn('border-t-2 edge bg-paper-50 md:hidden dark:bg-ink-950')}
       >
         <Container className="flex flex-col gap-1 py-4">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              className="rounded-2xl px-4 py-3 text-sm font-medium text-ink-700 hover:bg-ink-100 dark:text-sand-200 dark:hover:bg-ink-800"
+              className="rounded-none border-2 border-transparent px-4 py-3 text-xs font-black uppercase tracking-wide text-ink-950 hover:edge hover:bg-brick-500 hover:text-white dark:text-paper-100"
             >
               {t(item.key)}
             </Link>
           ))}
 
-          <div className="mt-2 flex items-center justify-between border-t border-sand-200 pt-4 dark:border-ink-800">
+          <div className="mt-2 flex items-center justify-between border-t-2 edge pt-4">
             <LocaleSwitcher />
             {isAuthenticated ? (
               <div className="flex items-center gap-2">

@@ -3,14 +3,23 @@ import { cn } from '@/lib/cn';
 
 export type BadgeTone = 'brand' | 'accent' | 'neutral' | 'success' | 'warning' | 'danger' | 'info';
 
+/**
+ * Every badge is a hard-edged rectangle. Because the palette holds two colours,
+ * the tones collapse to three treatments — solid brick, solid black, and
+ * outlined — and callers keep their existing semantic names.
+ *
+ * `success` is deliberately solid black rather than green: with no third hue,
+ * "confirmed" is expressed as the heaviest possible fill. Every place a tone
+ * carries meaning also renders a text label, so nothing rests on colour alone.
+ */
 const TONES: Record<BadgeTone, string> = {
-  brand: 'bg-brand-100 text-brand-900 dark:bg-brand-900/50 dark:text-brand-100',
-  accent: 'bg-accent-100 text-accent-900 dark:bg-accent-900/50 dark:text-accent-100',
-  neutral: 'bg-sand-200 text-ink-800 dark:bg-ink-800 dark:text-sand-200',
-  success: 'bg-success-100 text-success-900 dark:bg-success-900/50 dark:text-success-100',
-  warning: 'bg-warning-100 text-warning-900 dark:bg-warning-900/50 dark:text-warning-100',
-  danger: 'bg-danger-100 text-danger-900 dark:bg-danger-900/50 dark:text-danger-100',
-  info: 'bg-info-100 text-info-900 dark:bg-info-900/50 dark:text-info-100',
+  brand: 'border-ink-950 bg-brick-500 text-white',
+  accent: 'border-ink-950 bg-brick-500 text-white',
+  danger: 'border-ink-950 bg-brick-500 text-white',
+  warning: 'border-ink-950 bg-brick-100 text-brick-900',
+  success: 'border-ink-950 bg-ink-950 text-white dark:border-paper-100',
+  neutral: 'border-ink-950 bg-paper-100 text-ink-950 dark:border-paper-100 dark:bg-ink-900 dark:text-paper-100',
+  info: 'border-ink-950 bg-paper-50 text-ink-950 dark:border-paper-100 dark:bg-ink-950 dark:text-paper-100',
 };
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
@@ -21,7 +30,7 @@ export function Badge({ tone = 'neutral', className, children, ...props }: Badge
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold',
+        'inline-flex items-center gap-1.5 rounded-none border-2 px-2.5 py-0.5 text-xs font-black uppercase tracking-wide',
         TONES[tone],
         className,
       )}

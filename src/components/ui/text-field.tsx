@@ -35,7 +35,7 @@ export function TextField({
 
   return (
     <div className="space-y-1.5">
-      <label htmlFor={id} className="block text-sm font-semibold text-ink-800 dark:text-sand-200">
+      <label htmlFor={id} className="block text-xs font-black uppercase tracking-wider text-ink-950 dark:text-paper-100">
         {label}
       </label>
 
@@ -46,11 +46,13 @@ export function TextField({
           aria-invalid={error ? true : undefined}
           aria-describedby={describedBy || undefined}
           className={cn(
-            'h-12 w-full rounded-2xl border bg-white px-4 text-[0.9375rem] text-ink-900 transition-colors duration-150 placeholder:text-ink-400 dark:bg-ink-900 dark:text-sand-50 dark:placeholder:text-ink-500',
+            // Square, thick-edged, and it gains a hard shadow on focus rather
+            // than a glow — the only elevation move this system has.
+            'h-12 w-full rounded-none border-2 edge bg-paper-50 px-4 text-[0.9375rem] font-medium text-ink-950',
+            'transition-shadow duration-100 placeholder:text-ink-700 focus:shadow-hard focus:outline-none',
+            'dark:bg-ink-950 dark:text-paper-100 dark:placeholder:text-ink-950',
             trailing ? 'pr-12' : null,
-            error
-              ? 'border-danger-500 focus:border-danger-500'
-              : 'border-sand-300 hover:border-sand-400 focus:border-brand-500 dark:border-ink-700 dark:hover:border-ink-600 dark:focus:border-brand-500',
+            error ? 'border-brick-500 shadow-hard' : null,
             className,
           )}
           {...props}
@@ -62,11 +64,11 @@ export function TextField({
       </div>
 
       {error ? (
-        <p id={errorId} role="alert" className="animate-fade-in text-sm font-medium text-danger-600 dark:text-danger-400">
+        <p id={errorId} role="alert" className="animate-fade-in text-sm font-bold text-brick-600 dark:text-brick-400">
           {error}
         </p>
       ) : hint ? (
-        <p id={hintId} className="text-sm text-ink-500 dark:text-ink-400">
+        <p id={hintId} className="text-sm text-ink-900 dark:text-paper-400">
           {hint}
         </p>
       ) : null}

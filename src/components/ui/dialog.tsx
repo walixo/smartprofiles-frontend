@@ -81,7 +81,7 @@ export function Dialog({ isOpen, onClose, title, description, children, classNam
   return (
     <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
       <div
-        className="animate-fade-in absolute inset-0 bg-ink-950/60 backdrop-blur-sm"
+        className="animate-fade-in absolute inset-0 bg-ink-950/70"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -94,17 +94,17 @@ export function Dialog({ isOpen, onClose, title, description, children, classNam
         aria-describedby={description ? descriptionId : undefined}
         tabIndex={-1}
         className={cn(
-          'animate-pop relative w-full max-w-sm rounded-4xl border border-sand-200 bg-white p-6 shadow-lifted outline-none dark:border-ink-800 dark:bg-ink-900',
+          'animate-pop relative w-full max-w-sm rounded-4xl border-2 edge bg-white p-6 shadow-lifted outline-none dark:bg-ink-900',
           className,
         )}
       >
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h2 id={titleId} className="text-lg font-bold text-ink-900 dark:text-sand-50">
+            <h2 id={titleId} className="text-lg font-black uppercase tracking-tight text-ink-950 dark:text-paper-100">
               {title}
             </h2>
             {description ? (
-              <p id={descriptionId} className="mt-1 text-sm text-ink-600 dark:text-ink-300">
+              <p id={descriptionId} className="mt-1 text-sm text-ink-900 dark:text-paper-200">
                 {description}
               </p>
             ) : null}
@@ -114,7 +114,7 @@ export function Dialog({ isOpen, onClose, title, description, children, classNam
             type="button"
             onClick={onClose}
             aria-label={t('common.close')}
-            className="-mr-1 -mt-1 inline-flex size-9 shrink-0 items-center justify-center rounded-full text-ink-500 transition-colors hover:bg-ink-100 hover:text-ink-900 dark:hover:bg-ink-800 dark:hover:text-sand-50"
+            className="-mr-1 -mt-1 inline-flex size-9 shrink-0 items-center justify-center rounded-none text-ink-950 transition-colors hover:bg-ink-100 hover:text-ink-900 dark:hover:bg-ink-800 dark:hover:text-sand-50"
           >
             <CloseIcon size={18} />
           </button>

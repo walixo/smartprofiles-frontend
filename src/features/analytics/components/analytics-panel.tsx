@@ -49,10 +49,10 @@ export function AnalyticsPanel() {
               onClick={() => setDays(range)}
               aria-pressed={days === range}
               className={cn(
-                'rounded-full px-3 py-1.5 text-xs font-semibold transition-colors',
+                'rounded-none px-3 py-1.5 text-xs font-semibold transition-colors',
                 days === range
                   ? 'bg-brand-500 text-white'
-                  : 'text-ink-600 hover:bg-ink-100 dark:text-ink-300 dark:hover:bg-ink-800',
+                  : 'text-ink-900 hover:bg-ink-100 dark:text-paper-200 dark:hover:bg-ink-800',
               )}
             >
               {t(`analytics.range.${range}` as TranslationKey)}
@@ -63,16 +63,16 @@ export function AnalyticsPanel() {
 
       {isPending ? (
         <div className="flex h-32 items-center justify-center">
-          <SpinnerIcon size={18} className="animate-spin text-ink-400" />
+          <SpinnerIcon size={18} className="animate-spin text-ink-700" />
         </div>
       ) : !data || data.totalViews === 0 ? (
-        <p className="py-8 text-center text-sm text-ink-500 dark:text-ink-400">{t('analytics.none')}</p>
+        <p className="py-8 text-center text-sm text-ink-950 dark:text-paper-300">{t('analytics.none')}</p>
       ) : (
         <>
           <ViewsChart daily={data.daily} label={t('analytics.chartLabel')} />
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-ink-500 dark:text-ink-400">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-ink-950 dark:text-paper-300">
               {t('analytics.sources')}
             </h3>
             <ul className="mt-3 space-y-2">
@@ -82,23 +82,23 @@ export function AnalyticsPanel() {
 
                 return (
                   <li key={source} className="flex items-center gap-3">
-                    <span className="w-36 shrink-0 text-sm text-ink-700 dark:text-sand-200">
+                    <span className="w-36 shrink-0 text-sm text-ink-700 dark:text-paper-100">
                       {t(`viewSource.${source}` as TranslationKey)}
                     </span>
-                    <span className="h-2 flex-1 overflow-hidden rounded-full bg-sand-200 dark:bg-ink-800">
+                    <span className="h-2 flex-1 overflow-hidden rounded-none bg-paper-200 dark:bg-ink-800">
                       <span
-                        className={cn('block h-full rounded-full transition-[width] duration-500', SOURCE_TONE[source])}
+                        className={cn('block h-full rounded-none transition-[width] duration-500', SOURCE_TONE[source])}
                         style={{ width: `${share}%` }}
                       />
                     </span>
-                    <span className="w-10 shrink-0 text-right text-sm font-semibold tabular-nums text-ink-900 dark:text-sand-50">
+                    <span className="w-10 shrink-0 text-right text-sm font-semibold tabular-nums text-ink-900 dark:text-paper-50">
                       {count}
                     </span>
                   </li>
                 );
               })}
             </ul>
-            <p className="mt-3 text-xs text-ink-500 dark:text-ink-400">{t('viewSource.qrHint')}</p>
+            <p className="mt-3 text-xs text-ink-950 dark:text-paper-300">{t('viewSource.qrHint')}</p>
           </div>
         </>
       )}
@@ -109,8 +109,8 @@ export function AnalyticsPanel() {
 function Figure({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-3xl font-bold text-ink-900 tabular-nums dark:text-sand-50">{value}</p>
-      <p className="mt-0.5 text-xs font-medium text-ink-500 dark:text-ink-400">{label}</p>
+      <p className="text-3xl font-bold text-ink-900 tabular-nums dark:text-paper-50">{value}</p>
+      <p className="mt-0.5 text-xs font-medium text-ink-950 dark:text-paper-300">{label}</p>
     </div>
   );
 }

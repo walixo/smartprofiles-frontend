@@ -58,7 +58,7 @@ export function ProfileEditorPage() {
   if (isPending) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <SpinnerIcon size={20} className="animate-spin text-ink-400" />
+        <SpinnerIcon size={20} className="animate-spin text-ink-700" />
       </div>
     );
   }
@@ -127,10 +127,10 @@ function EditorForm({ profile }: { profile: OwnerProfile }) {
     <Container className="py-10 sm:py-14">
       <header className="animate-fade-up flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-sand-50">
+          <h1 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-paper-50">
             {t('editor.title')}
           </h1>
-          <p className="mt-2 text-ink-600 dark:text-ink-300">{t('editor.subtitle')}</p>
+          <p className="mt-2 text-ink-900 dark:text-paper-200">{t('editor.subtitle')}</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
@@ -408,7 +408,7 @@ function EditorForm({ profile }: { profile: OwnerProfile }) {
         </div>
 
         <aside className="lg:sticky lg:top-24">
-          <div className="rounded-4xl border border-sand-200 bg-white p-5 shadow-soft dark:border-ink-800 dark:bg-ink-900">
+          <div className="rounded-4xl border-2 edge bg-white p-5 shadow-soft dark:bg-ink-900">
             <Button type="submit" className="w-full" isLoading={update.isPending}>
               {justSaved ? (
                 <>
@@ -420,7 +420,7 @@ function EditorForm({ profile }: { profile: OwnerProfile }) {
               )}
             </Button>
 
-            <div className="mt-4 space-y-2 border-t border-sand-200 pt-4 dark:border-ink-800">
+            <div className="mt-4 space-y-2 border-t-2 edge pt-4">
               {profile.visibility === 'public' ? (
                 <Button
                   type="button"
@@ -482,7 +482,7 @@ function RepeatableRows<T>({
 
   return (
     <fieldset>
-      <legend className="mb-2.5 block text-sm font-semibold text-ink-800 dark:text-sand-200">{legend}</legend>
+      <legend className="mb-2.5 block text-sm font-semibold text-ink-950 dark:text-paper-100">{legend}</legend>
       <div className="space-y-3">
         {rows.map((row, index) => (
           <div key={index} className="flex items-end gap-2">
@@ -492,7 +492,7 @@ function RepeatableRows<T>({
               onClick={() => onRemove(index)}
               aria-label={t('editor.remove')}
               title={t('editor.remove')}
-              className="mb-1 inline-flex size-9 shrink-0 items-center justify-center rounded-full text-ink-500 transition-colors hover:bg-danger-50 hover:text-danger-600 dark:hover:bg-ink-800"
+              className="mb-1 inline-flex size-9 shrink-0 items-center justify-center rounded-none text-ink-950 transition-colors hover:bg-danger-50 hover:text-danger-600 dark:hover:bg-ink-800"
             >
               <CloseIcon size={16} />
             </button>

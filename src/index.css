@@ -5,160 +5,203 @@
 
 @theme {
   /* ---------------------------------------------------------------------
-   * Brand — anchored on the Smart logo coral.
-   * The two supplied palette reds are steps on this same ramp, so brand
-   * depth (700/900) is drawn from the palette rather than invented.
+   * NEOBRUTALIST PALETTE — two colours, plus black and white.
+   *
+   * Everything on screen is built from:
+   *   brick   #C64B45   the signage red
+   *   paper   #F5E9E7   the signage off-white
+   *   black   #000000   every border, every rule, most type
+   *   white   #FFFFFF   raised surfaces in light mode
+   *
+   * There is no third hue anywhere — no green, no blue, no amber. State is
+   * carried by weight, fill and border instead of by colour. Legacy token
+   * families are remapped onto these four so no component references a hue
+   * that no longer exists.
    * ------------------------------------------------------------------ */
-  --color-brand-50: #fef3f2;
-  --color-brand-100: #fde4e3;
-  --color-brand-200: #fbcdcd;
-  --color-brand-300: #f7a8a9;
-  --color-brand-400: #f47b7f;
-  --color-brand-500: #f0555a; /* ← logo coral. PRIMARY. Correct this one line if the exact hex differs. */
-  --color-brand-600: #d9434a;
-  --color-brand-700: #c44536; /* supplied palette red */
-  --color-brand-800: #9c3a2c;
-  --color-brand-900: #772e25; /* supplied palette dark */
-  --color-brand-950: #4a1c16;
 
-  /* Accent — supplied orange F79328 */
-  --color-accent-50: #fff7ed;
-  --color-accent-100: #fdecd3;
-  --color-accent-200: #fbd6a5;
-  --color-accent-300: #f9bb6d;
-  --color-accent-400: #f8a648;
-  --color-accent-500: #f79328;
-  --color-accent-600: #de7714;
-  --color-accent-700: #b85b12;
-  --color-accent-800: #914816;
-  --color-accent-900: #763c15;
-  --color-accent-950: #401d07;
+  /* BRICK — the one accent. Correct `brick-500` if the exact signage hex differs. */
+  --color-brick-50: #fdf2f1;
+  --color-brick-100: #f9dedc;
+  --color-brick-200: #f2bcb8;
+  --color-brick-300: #e59189;
+  --color-brick-400: #d66a62;
+  --color-brick-500: #c64b45; /* ← the red from the sign. PRIMARY. */
+  --color-brick-600: #a93a35;
+  --color-brick-700: #872d29;
+  --color-brick-800: #5f201d;
+  --color-brick-900: #3a1412;
+  --color-brick-950: #1e0a09;
 
-  /* Highlight — supplied yellow E4CE54 */
-  --color-highlight-50: #fdfcec;
-  --color-highlight-100: #faf6cb;
-  --color-highlight-200: #f5eb9b;
-  --color-highlight-300: #eedd6c;
-  --color-highlight-400: #e4ce54;
-  --color-highlight-500: #d2b734;
-  --color-highlight-600: #b69429;
-  --color-highlight-700: #916f24;
-  --color-highlight-800: #785a25;
-  --color-highlight-900: #664b23;
-  --color-highlight-950: #3a2810;
+  /* PAPER — the off-white ground and its deeper tints. */
+  --color-paper-50: #ffffff;
+  --color-paper-100: #f5e9e7; /* ← the off-white from the sign. */
+  --color-paper-200: #ead8d5;
+  --color-paper-300: #dcc4c0;
+  --color-paper-400: #c9a8a3;
 
-  /* Sand — supplied cream EDDDD4. Light-theme surfaces. */
-  --color-sand-50: #fbf8f6;
-  --color-sand-100: #f6f0eb;
-  --color-sand-200: #edddd4;
-  --color-sand-300: #dfc6b8;
-  --color-sand-400: #cca792;
-  --color-sand-500: #bb8b72;
-  --color-sand-600: #a87360;
-  --color-sand-700: #8c5c50;
-  --color-sand-800: #734e46;
-  --color-sand-900: #5f423c;
-  --color-sand-950: #32211d;
+  /* INK — pure neutral. 950 is true black: every border and rule uses it. */
+  --color-ink-50: #fafafa;
+  --color-ink-100: #f2f2f2;
+  --color-ink-200: #e0e0e0;
+  --color-ink-300: #bdbdbd;
+  --color-ink-400: #949494;
+  --color-ink-500: #6e6e6e;
+  --color-ink-600: #4f4f4f;
+  --color-ink-700: #333333;
+  --color-ink-800: #1f1f1f;
+  --color-ink-900: #0d0d0d;
+  --color-ink-950: #000000;
 
-  /* Ink — warm neutrals. Text in light theme, surfaces in dark theme.
-   * Deliberately warm-tinted; a cool grey ramp reads as dirty next to this palette. */
-  --color-ink-50: #faf8f7;
-  --color-ink-100: #f1edeb;
-  --color-ink-200: #e2dad7;
-  --color-ink-300: #cbbfba;
-  --color-ink-400: #a89893;
-  --color-ink-500: #8a7972;
-  --color-ink-600: #71605a;
-  --color-ink-700: #5c4e4a;
-  --color-ink-800: #4a3f3c;
-  --color-ink-900: #2d2523;
-  --color-ink-950: #1b1513;
+  /* ---- Legacy families, folded onto the four colours ---- */
+
+  /* brand → brick */
+  --color-brand-50: var(--color-brick-50);
+  --color-brand-100: var(--color-brick-100);
+  --color-brand-200: var(--color-brick-200);
+  --color-brand-300: var(--color-brick-300);
+  --color-brand-400: var(--color-brick-400);
+  --color-brand-500: var(--color-brick-500);
+  --color-brand-600: var(--color-brick-600);
+  --color-brand-700: var(--color-brick-700);
+  --color-brand-800: var(--color-brick-800);
+  --color-brand-900: var(--color-brick-900);
+  --color-brand-950: var(--color-brick-950);
+
+  /* accent + highlight collapse into brick — the palette has no third hue. */
+  --color-accent-50: var(--color-brick-50);
+  --color-accent-100: var(--color-brick-100);
+  --color-accent-200: var(--color-brick-200);
+  --color-accent-300: var(--color-brick-300);
+  --color-accent-400: var(--color-brick-400);
+  --color-accent-500: var(--color-brick-500);
+  --color-accent-600: var(--color-brick-600);
+  --color-accent-700: var(--color-brick-700);
+  --color-accent-800: var(--color-brick-800);
+  --color-accent-900: var(--color-brick-900);
+  --color-accent-950: var(--color-brick-950);
+
+  --color-highlight-50: var(--color-paper-100);
+  --color-highlight-100: var(--color-paper-200);
+  --color-highlight-200: var(--color-paper-300);
+  --color-highlight-300: var(--color-paper-400);
+  --color-highlight-400: var(--color-brick-300);
+  --color-highlight-500: var(--color-brick-500);
+  --color-highlight-600: var(--color-brick-600);
+  --color-highlight-700: var(--color-brick-700);
+  --color-highlight-800: var(--color-brick-800);
+  --color-highlight-900: var(--color-brick-900);
+  --color-highlight-950: var(--color-brick-950);
+
+  /* sand → paper */
+  --color-sand-50: var(--color-paper-50);
+  --color-sand-100: var(--color-paper-100);
+  --color-sand-200: var(--color-paper-200);
+  --color-sand-300: var(--color-paper-300);
+  --color-sand-400: var(--color-paper-400);
+  --color-sand-500: var(--color-ink-500);
+  --color-sand-600: var(--color-ink-600);
+  --color-sand-700: var(--color-ink-700);
+  --color-sand-800: var(--color-ink-800);
+  --color-sand-900: var(--color-ink-900);
+  --color-sand-950: var(--color-ink-950);
+
+  /*
+   * Semantic states, without hue.
+   *
+   * A deliberate loss: success is no longer green and info no longer blue.
+   * With a two-colour palette that is unavoidable, so state is signalled by
+   * treatment instead — solid black for confirmed, solid brick for problems,
+   * outlined for neutral — and every stateful component already pairs its
+   * colour with an icon and a text label, so nothing depends on hue alone.
+   */
+  --color-success-50: var(--color-ink-50);
+  --color-success-100: var(--color-ink-100);
+  --color-success-200: var(--color-ink-300);
+  --color-success-300: var(--color-ink-400);
+  --color-success-400: var(--color-ink-700);
+  --color-success-500: var(--color-ink-950);
+  --color-success-600: var(--color-ink-950);
+  --color-success-700: var(--color-ink-900);
+  --color-success-800: var(--color-ink-900);
+  --color-success-900: var(--color-ink-950);
+  --color-success-950: var(--color-ink-950);
+
+  --color-info-50: var(--color-paper-50);
+  --color-info-100: var(--color-paper-200);
+  --color-info-200: var(--color-paper-300);
+  --color-info-300: var(--color-paper-400);
+  --color-info-400: var(--color-ink-600);
+  --color-info-500: var(--color-ink-700);
+  --color-info-600: var(--color-ink-800);
+  --color-info-700: var(--color-ink-900);
+  --color-info-800: var(--color-ink-900);
+  --color-info-900: var(--color-ink-950);
+  --color-info-950: var(--color-ink-950);
+
+  --color-warning-50: var(--color-brick-50);
+  --color-warning-100: var(--color-brick-100);
+  --color-warning-400: var(--color-brick-400);
+  --color-warning-500: var(--color-brick-500);
+  --color-warning-600: var(--color-brick-600);
+  --color-warning-900: var(--color-brick-900);
+
+  --color-danger-50: var(--color-brick-50);
+  --color-danger-100: var(--color-brick-100);
+  --color-danger-400: var(--color-brick-400);
+  --color-danger-500: var(--color-brick-500);
+  --color-danger-600: var(--color-brick-600);
+  --color-danger-900: var(--color-brick-900);
 
   /* ---------------------------------------------------------------------
-   * Semantic — success and info are the two hexes added outside the supplied
-   * palette, approved because coral cannot legibly mean "brand" and "error"
-   * at once. Status feedback ONLY: never brand surfaces, chrome or CTAs.
+   * Geometry. Everything is square.
+   *
+   * Zeroing the radius tokens re-cuts every `rounded-*` in the codebase at
+   * once — the corners were never the components' business.
    * ------------------------------------------------------------------ */
-  --color-success-50: #edf7f0;
-  --color-success-100: #d5eddd;
-  --color-success-200: #addcbe;
-  --color-success-300: #7ec59a;
-  --color-success-400: #55ac79;
-  --color-success-500: #38905f;
-  --color-success-600: #2a744c;
-  --color-success-700: #235c3e;
-  --color-success-800: #1e4a33;
-  --color-success-900: #183b2a;
-  --color-success-950: #0c2117;
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+  --radius-5xl: 0px;
 
-  --color-info-50: #ecf4f9;
-  --color-info-100: #d3e6f1;
-  --color-info-200: #a9cde2;
-  --color-info-300: #78aece;
-  --color-info-400: #4e8fb6;
-  --color-info-500: #33739b;
-  --color-info-600: #275c7e;
-  --color-info-700: #224c67;
-  --color-info-800: #1f4055;
-  --color-info-900: #1b3648;
-  --color-info-950: #0f1f2b;
-
-  /* Warning and danger reuse the supplied palette — no new hues needed. */
-  --color-warning-50: var(--color-accent-50);
-  --color-warning-100: var(--color-accent-100);
-  --color-warning-400: var(--color-accent-400);
-  --color-warning-500: var(--color-accent-500);
-  --color-warning-600: var(--color-accent-600);
-  --color-warning-900: var(--color-accent-900);
-
-  --color-danger-50: var(--color-brand-50);
-  --color-danger-100: var(--color-brand-100);
-  --color-danger-400: var(--color-brand-400);
-  --color-danger-500: var(--color-brand-600);
-  --color-danger-600: var(--color-brand-700);
-  --color-danger-900: var(--color-brand-900);
-
-  /* Radii */
-  --radius-4xl: 2rem;
-  --radius-5xl: 2.75rem;
-
-  /* Shadows — tinted with the palette's dark red rather than neutral black,
-   * which keeps elevation from looking grey against the sand surfaces. */
-  --shadow-soft: 0 1px 2px rgb(119 46 37 / 0.06), 0 4px 14px -4px rgb(119 46 37 / 0.1);
-  --shadow-lifted: 0 2px 4px rgb(119 46 37 / 0.05), 0 18px 40px -12px rgb(119 46 37 / 0.2);
-  --shadow-glow: 0 0 0 1px rgb(240 85 90 / 0.3), 0 10px 30px -8px rgb(240 85 90 / 0.45);
+  /* ---------------------------------------------------------------------
+   * Shadows: hard offsets, zero blur, pure black. The defining move.
+   * Redefining these three names converts every existing `shadow-*` use.
+   * ------------------------------------------------------------------ */
+  --shadow-soft: 3px 3px 0 0 var(--color-ink-950);
+  --shadow-lifted: 6px 6px 0 0 var(--color-ink-950);
+  --shadow-glow: 8px 8px 0 0 var(--color-ink-950);
+  --shadow-hard: 4px 4px 0 0 var(--color-ink-950);
+  --shadow-pressed: 1px 1px 0 0 var(--color-ink-950);
 
   --font-sans:
     ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
     'Noto Sans', sans-serif;
 
-  /* ---------------------------------------------------------------------
-   * Motion.
-   * Entrances use an ease-out-quint so they decelerate into place; `pop` is
-   * deliberately overshooting for things that should feel physical. Ambient
-   * loops are slow and low-amplitude so they read as life, not distraction.
-   * The reduced-motion block below neutralises all of it.
-   * ------------------------------------------------------------------ */
-  --animate-fade-up: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-  --animate-fade-in: fade-in 0.5s ease-out both;
-  --animate-pop: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  /* ---- Motion (unchanged; the reduced-motion block below neutralises it) ---- */
+  --animate-fade-up: fade-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.35s ease-out both;
+  --animate-pop: pop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-slow: float 9s ease-in-out infinite;
   --animate-sway: sway 7s ease-in-out infinite;
-  --animate-draw: draw 1.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  --animate-draw: draw 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
   --animate-shimmer: shimmer 1.8s linear infinite;
 
   @keyframes fade-up {
     from {
       opacity: 0;
-      transform: translateY(1.25rem);
+      transform: translateY(0.75rem);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-
   @keyframes fade-in {
     from {
       opacity: 0;
@@ -167,39 +210,34 @@
       opacity: 1;
     }
   }
-
   @keyframes pop {
     from {
       opacity: 0;
-      transform: scale(0.9);
+      transform: scale(0.94);
     }
     to {
       opacity: 1;
       transform: scale(1);
     }
   }
-
   @keyframes float {
     0%,
     100% {
       transform: translateY(0);
     }
     50% {
-      transform: translateY(-0.6rem);
+      transform: translateY(-0.5rem);
     }
   }
-
   @keyframes sway {
     0%,
     100% {
       transform: translate3d(0, 0, 0) rotate(0deg);
     }
     50% {
-      transform: translate3d(0.4rem, -0.5rem, 0) rotate(1.5deg);
+      transform: translate3d(0.3rem, -0.4rem, 0) rotate(1.5deg);
     }
   }
-
-  /* Paired with an inline stroke-dasharray on the path being drawn. */
   @keyframes draw {
     from {
       stroke-dashoffset: var(--draw-length, 400);
@@ -208,7 +246,6 @@
       stroke-dashoffset: 0;
     }
   }
-
   @keyframes shimmer {
     from {
       background-position: -150% 0;
@@ -231,40 +268,52 @@
   }
 
   body {
-    background-color: var(--color-sand-50);
-    color: var(--color-ink-900);
+    background-color: var(--color-paper-100);
+    color: var(--color-ink-950);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Dark mode inverts to true black with paper type. Brick stays brick. */
   html.dark body {
     background-color: var(--color-ink-950);
-    color: var(--color-sand-100);
+    color: var(--color-paper-100);
+  }
+
+  /*
+   * Headings are the loudest element in a brutalist system: heavy, tight and
+   * slightly condensed. Set once here rather than per page.
+   */
+  h1,
+  h2,
+  h3 {
+    font-weight: 900;
+    letter-spacing: -0.03em;
   }
 
   ::selection {
-    background-color: var(--color-brand-200);
-    color: var(--color-brand-900);
+    background-color: var(--color-brick-500);
+    color: #ffffff;
   }
 
-  html.dark ::selection {
-    background-color: var(--color-brand-700);
-    color: var(--color-sand-50);
-  }
-
-  /* One consistent focus treatment everywhere, visible on both themes. */
+  /*
+   * Focus is a hard black slab, not a soft ring — it has to read against both
+   * brick fills and paper grounds.
+   */
   :focus-visible {
-    outline: 2px solid var(--color-brand-500);
+    outline: 3px solid var(--color-ink-950);
     outline-offset: 2px;
-    border-radius: var(--radius-sm);
+    border-radius: 0;
+  }
+
+  html.dark :focus-visible {
+    outline-color: var(--color-paper-100);
   }
 
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
-
     *,
     *::before,
     *::after {
@@ -272,5 +321,42 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
+  }
+}
+
+@layer utilities {
+  /*
+   * The brutalist press. A raised element sits on a hard offset shadow and
+   * physically moves into it when activated, rather than fading or tinting.
+   */
+  .slab {
+    box-shadow: var(--shadow-hard);
+    transition:
+      box-shadow 0.1s ease,
+      transform 0.1s ease;
+  }
+
+  .slab-press:active:not(:disabled) {
+    box-shadow: var(--shadow-pressed);
+    transform: translate(3px, 3px);
+  }
+
+  /* Borders are black in light, paper in dark — one class instead of a pair. */
+  .edge {
+    border-color: var(--color-ink-950);
+  }
+
+  html.dark .edge {
+    border-color: var(--color-paper-100);
+  }
+
+  html.dark .slab,
+  html.dark .slab-press {
+    --tw-shadow-color: var(--color-paper-100);
+    box-shadow: 4px 4px 0 0 var(--color-paper-100);
+  }
+
+  html.dark .slab-press:active:not(:disabled) {
+    box-shadow: 1px 1px 0 0 var(--color-paper-100);
   }
 }

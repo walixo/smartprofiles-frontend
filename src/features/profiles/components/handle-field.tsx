@@ -39,8 +39,8 @@ export function HandleField({ id, value, onChange, error, currentHandle }: Handl
         trailing={<StatusIcon status={status} />}
       />
 
-      <p className="pl-1 text-sm text-ink-500 dark:text-ink-400">
-        smartprofiles.eu/<span className="font-semibold text-ink-800 dark:text-sand-200">@{value || '…'}</span>
+      <p className="pl-1 text-sm text-ink-950 dark:text-paper-300">
+        smartprofiles.eu/<span className="font-semibold text-ink-950 dark:text-paper-100">@{value || '…'}</span>
       </p>
 
       {status === 'available' || status === 'taken' ? (
@@ -61,7 +61,7 @@ export function HandleField({ id, value, onChange, error, currentHandle }: Handl
 
 function StatusIcon({ status }: { status: HandleStatus }) {
   if (status === 'checking') {
-    return <SpinnerIcon size={17} className="mr-2 animate-spin text-ink-400" />;
+    return <SpinnerIcon size={17} className="mr-2 animate-spin text-ink-700" />;
   }
   if (status === 'available') {
     return <CheckIcon size={18} className="mr-2 text-success-500" />;

@@ -18,7 +18,7 @@ export function MessagesPage() {
   if (threads.isPending) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <SpinnerIcon size={20} className="animate-spin text-ink-400" />
+        <SpinnerIcon size={20} className="animate-spin text-ink-700" />
       </div>
     );
   }
@@ -28,10 +28,10 @@ export function MessagesPage() {
   return (
     <Container className="py-10 sm:py-14">
       <header className="animate-fade-up">
-        <h1 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-sand-50">
+        <h1 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-paper-50">
           {t('chat.title')}
         </h1>
-        <p className="mt-2 text-ink-600 dark:text-ink-300">{t('chat.subtitle')}</p>
+        <p className="mt-2 text-ink-900 dark:text-paper-200">{t('chat.subtitle')}</p>
       </header>
 
       {list.length === 0 ? (
@@ -52,24 +52,24 @@ function ThreadList({ threads, activeId }: { threads: ThreadSummary[]; activeId?
   return (
     <nav
       aria-label={t('chat.threads')}
-      className="overflow-hidden rounded-4xl border border-sand-200 bg-white shadow-soft dark:border-ink-800 dark:bg-ink-900"
+      className="overflow-hidden rounded-4xl border-2 edge bg-white shadow-soft dark:bg-ink-900"
     >
       <ul>
         {threads.map((thread) => {
           const isActive = thread.id === activeId;
 
           return (
-            <li key={thread.id} className="border-b border-sand-200 last:border-b-0 dark:border-ink-800">
+            <li key={thread.id} className="border-b-2 edge last:border-b-0">
               <Link
                 to={`/messages/${thread.id}`}
                 aria-current={isActive ? 'page' : undefined}
                 className={cn(
                   'block px-4 py-3.5 transition-colors',
-                  isActive ? 'bg-brand-50 dark:bg-ink-800' : 'hover:bg-sand-100 dark:hover:bg-ink-800/60',
+                  isActive ? 'bg-brand-50 dark:bg-ink-800' : 'hover:bg-paper-100 dark:hover:bg-ink-800/60',
                 )}
               >
                 <div className="flex items-center justify-between gap-2">
-                  <span className="truncate text-sm font-semibold text-ink-900 dark:text-sand-50">
+                  <span className="truncate text-sm font-semibold text-ink-900 dark:text-paper-50">
                     {thread.other.displayName}
                   </span>
                   {thread.unreadCount > 0 ? (
@@ -77,18 +77,18 @@ function ThreadList({ threads, activeId }: { threads: ThreadSummary[]; activeId?
                   ) : null}
                 </div>
 
-                <p className="mt-0.5 truncate text-xs text-ink-500 dark:text-ink-400">
+                <p className="mt-0.5 truncate text-xs text-ink-950 dark:text-paper-300">
                   {t('chat.about', { handle: thread.profile.handle })}
                 </p>
 
                 {thread.lastMessagePreview ? (
-                  <p className="mt-1.5 truncate text-sm text-ink-600 dark:text-ink-300">
+                  <p className="mt-1.5 truncate text-sm text-ink-900 dark:text-paper-200">
                     {thread.lastMessagePreview}
                   </p>
                 ) : null}
 
                 {thread.lastMessageAt ? (
-                  <p className="mt-1 text-xs text-ink-400 dark:text-ink-500">
+                  <p className="mt-1 text-xs text-ink-700 dark:text-ink-950">
                     {formatDate(thread.lastMessageAt, { dateStyle: 'medium', timeStyle: 'short' })}
                   </p>
                 ) : null}
@@ -124,8 +124,8 @@ function Conversation({ threads, threadId }: { threads: ThreadSummary[]; threadI
 
   if (!threadId || !thread) {
     return (
-      <div className="flex min-h-72 items-center justify-center rounded-4xl border border-dashed border-sand-300 p-8 text-center dark:border-ink-700">
-        <p className="text-sm text-ink-500 dark:text-ink-400">{t('chat.selectThread')}</p>
+      <div className="flex min-h-72 items-center justify-center rounded-4xl border border-2 border-dashed edge p-8 text-center">
+        <p className="text-sm text-ink-950 dark:text-paper-300">{t('chat.selectThread')}</p>
       </div>
     );
   }
@@ -133,11 +133,11 @@ function Conversation({ threads, threadId }: { threads: ThreadSummary[]; threadI
   return (
     <section
       aria-label={thread.other.displayName}
-      className="flex h-[34rem] flex-col overflow-hidden rounded-4xl border border-sand-200 bg-white shadow-soft dark:border-ink-800 dark:bg-ink-900"
+      className="flex h-[34rem] flex-col overflow-hidden rounded-4xl border-2 edge bg-white shadow-soft dark:bg-ink-900"
     >
-      <header className="flex items-center justify-between gap-3 border-b border-sand-200 px-5 py-3.5 dark:border-ink-800">
+      <header className="flex items-center justify-between gap-3 border-b-2 edge px-5 py-3.5">
         <div className="min-w-0">
-          <p className="truncate font-semibold text-ink-900 dark:text-sand-50">{thread.other.displayName}</p>
+          <p className="truncate font-semibold text-ink-900 dark:text-paper-50">{thread.other.displayName}</p>
           <Link
             to={`/@${thread.profile.handle}`}
             className="truncate text-xs text-brand-600 hover:text-brand-700 dark:text-brand-400"
@@ -150,7 +150,7 @@ function Conversation({ threads, threadId }: { threads: ThreadSummary[]; threadI
       <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto px-5 py-4">
         {messages.isPending ? (
           <div className="flex h-full items-center justify-center">
-            <SpinnerIcon size={18} className="animate-spin text-ink-400" />
+            <SpinnerIcon size={18} className="animate-spin text-ink-700" />
           </div>
         ) : (
           messages.data?.messages.map((message) => <Bubble key={message.id} message={message} />)
@@ -179,12 +179,12 @@ function Bubble({ message }: { message: MessageView }) {
             'animate-pop inline-block whitespace-pre-wrap rounded-3xl px-4 py-2.5 text-left text-[0.9375rem] leading-relaxed',
             message.isMine
               ? 'bg-brand-500 text-white'
-              : 'bg-sand-200 text-ink-900 dark:bg-ink-800 dark:text-sand-100',
+              : 'bg-paper-200 text-ink-900 dark:bg-ink-800 dark:text-paper-100',
           )}
         >
           {message.body}
         </div>
-        <p className="mt-1 px-1 text-xs text-ink-400 dark:text-ink-500">
+        <p className="mt-1 px-1 text-xs text-ink-700 dark:text-ink-950">
           {formatDate(message.createdAt, { timeStyle: 'short' })}
         </p>
       </div>
@@ -198,8 +198,8 @@ function EmptyInbox() {
   return (
     <div className="animate-fade-up flex flex-col items-center py-16 text-center">
       <EmptyInboxIllustration label={t('chat.empty.illustrationAlt')} className="w-60" />
-      <h2 className="mt-6 text-xl font-bold text-ink-900 dark:text-sand-50">{t('chat.empty.title')}</h2>
-      <p className="mt-2 max-w-md text-ink-600 dark:text-ink-300">{t('chat.empty.body')}</p>
+      <h2 className="mt-6 text-xl font-bold text-ink-900 dark:text-paper-50">{t('chat.empty.title')}</h2>
+      <p className="mt-2 max-w-md text-ink-900 dark:text-paper-200">{t('chat.empty.body')}</p>
     </div>
   );
 }

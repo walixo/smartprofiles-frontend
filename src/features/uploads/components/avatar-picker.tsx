@@ -62,13 +62,13 @@ export function AvatarPicker({ file, onSelect, isUploading = false, label, hint 
 
   return (
     <div className="space-y-1.5">
-      <span className="block text-sm font-semibold text-ink-800 dark:text-sand-200">{label}</span>
+      <span className="block text-sm font-semibold text-ink-950 dark:text-paper-100">{label}</span>
 
       <div className="flex items-center gap-4">
         <span
           className={cn(
             'relative flex size-20 shrink-0 items-center justify-center overflow-hidden rounded-3xl',
-            preview ? 'bg-sand-200 dark:bg-ink-800' : 'bg-sand-200 text-ink-400 dark:bg-ink-800 dark:text-ink-500',
+            preview ? 'bg-paper-200 dark:bg-ink-800' : 'bg-paper-200 text-ink-700 dark:bg-ink-800 dark:text-ink-950',
           )}
         >
           {preview ? (
@@ -90,7 +90,7 @@ export function AvatarPicker({ file, onSelect, isUploading = false, label, hint 
               type="button"
               onClick={() => inputRef.current?.click()}
               disabled={isUploading}
-              className="rounded-full border border-sand-300 px-3.5 py-1.5 text-sm font-semibold text-ink-800 transition-colors hover:bg-ink-100 disabled:opacity-50 dark:border-ink-700 dark:text-sand-200 dark:hover:bg-ink-800"
+              className="rounded-none border-2 edge px-3.5 py-1.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-ink-100 disabled:opacity-50 dark:text-paper-100 dark:hover:bg-ink-800"
             >
               {file ? t('upload.replace') : t('upload.choose')}
             </button>
@@ -101,7 +101,7 @@ export function AvatarPicker({ file, onSelect, isUploading = false, label, hint 
                 onClick={() => onSelect(null)}
                 disabled={isUploading}
                 aria-label={t('upload.remove')}
-                className="inline-flex size-8 items-center justify-center rounded-full text-ink-500 transition-colors hover:bg-ink-100 disabled:opacity-50 dark:hover:bg-ink-800"
+                className="inline-flex size-8 items-center justify-center rounded-none text-ink-950 transition-colors hover:bg-ink-100 disabled:opacity-50 dark:hover:bg-ink-800"
               >
                 <CloseIcon size={15} />
               </button>
@@ -113,7 +113,7 @@ export function AvatarPicker({ file, onSelect, isUploading = false, label, hint 
               {error}
             </p>
           ) : hint ? (
-            <p className="text-sm text-ink-500 dark:text-ink-400">{hint}</p>
+            <p className="text-sm text-ink-950 dark:text-paper-300">{hint}</p>
           ) : null}
         </div>
       </div>

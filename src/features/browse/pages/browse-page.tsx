@@ -94,10 +94,10 @@ export function BrowsePage() {
   return (
     <Container className="py-10 sm:py-14">
       <header className="animate-fade-up">
-        <h1 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-sand-50">
+        <h1 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-paper-50">
           {t('browse.title')}
         </h1>
-        <p className="mt-2 max-w-2xl text-ink-600 dark:text-ink-300">{t('browse.subtitle')}</p>
+        <p className="mt-2 max-w-2xl text-ink-900 dark:text-paper-200">{t('browse.subtitle')}</p>
       </header>
 
       <div className="mt-7">
@@ -114,7 +114,7 @@ export function BrowsePage() {
 
       {query.isPending ? (
         <div className="flex min-h-64 items-center justify-center">
-          <SpinnerIcon size={20} className="animate-spin text-ink-400" />
+          <SpinnerIcon size={20} className="animate-spin text-ink-700" />
         </div>
       ) : query.data && query.data.meta.total === 0 ? (
         <EmptyState />
@@ -124,7 +124,7 @@ export function BrowsePage() {
               losing the caret position in the search field. */}
           <p
             aria-live="polite"
-            className="mt-6 text-sm font-medium text-ink-500 dark:text-ink-400"
+            className="mt-6 text-sm font-medium text-ink-950 dark:text-paper-300"
           >
             {plural('browse.results', query.data.meta.total)}
           </p>
@@ -146,7 +146,7 @@ export function BrowsePage() {
               <Button variant="outline" onClick={() => goToPage(page - 1)} disabled={page <= 1}>
                 {t('browse.page.previous')}
               </Button>
-              <span className="text-sm font-medium text-ink-600 dark:text-ink-300">
+              <span className="text-sm font-medium text-ink-900 dark:text-paper-200">
                 {t('browse.page.indicator', { page, total: query.data.meta.totalPages })}
               </span>
               <Button
@@ -170,8 +170,8 @@ function EmptyState() {
   return (
     <div className="animate-fade-up flex flex-col items-center py-16 text-center">
       <EmptySearchIllustration label={t('browse.empty.illustrationAlt')} className="w-56" />
-      <h2 className="mt-6 text-xl font-bold text-ink-900 dark:text-sand-50">{t('browse.empty.title')}</h2>
-      <p className="mt-2 max-w-md text-ink-600 dark:text-ink-300">{t('browse.empty.body')}</p>
+      <h2 className="mt-6 text-xl font-bold text-ink-900 dark:text-paper-50">{t('browse.empty.title')}</h2>
+      <p className="mt-2 max-w-md text-ink-900 dark:text-paper-200">{t('browse.empty.body')}</p>
     </div>
   );
 }

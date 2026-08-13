@@ -63,7 +63,7 @@ function SessionPending() {
 
   return (
     <div className="flex min-h-[60vh] items-center justify-center">
-      <span className="flex items-center gap-3 text-sm font-medium text-ink-500 dark:text-ink-400">
+      <span className="flex items-center gap-3 text-sm font-medium text-ink-950 dark:text-paper-300">
         <SpinnerIcon size={18} className="animate-spin" />
         {t('common.loading')}
       </span>

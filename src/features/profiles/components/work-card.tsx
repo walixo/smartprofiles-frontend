@@ -9,7 +9,7 @@ export function WorkCard({ work, index }: { work: PublicWork; index: number }) {
 
   const body = (
     <>
-      <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-sand-200 dark:bg-ink-800">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-paper-200 dark:bg-ink-800">
         {cover ? (
           <img
             src={cover}
@@ -18,22 +18,22 @@ export function WorkCard({ work, index }: { work: PublicWork; index: number }) {
             className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <span className="flex size-full items-center justify-center text-ink-400 dark:text-ink-600">
+          <span className="flex size-full items-center justify-center text-ink-700 dark:text-paper-100">
             <GalleryIcon size={34} />
           </span>
         )}
 
         {work.year ? (
-          <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-bold text-ink-800 backdrop-blur dark:bg-ink-950/85 dark:text-sand-100">
+          <span className="absolute left-3 top-3 rounded-none bg-white/90 px-2.5 py-1 text-xs font-bold text-ink-950  dark:bg-ink-950 dark:text-paper-100">
             {work.year}
           </span>
         ) : null}
       </div>
 
-      <h3 className="mt-4 text-base font-semibold text-ink-900 dark:text-sand-50">{work.title}</h3>
+      <h3 className="mt-4 text-base font-semibold text-ink-900 dark:text-paper-50">{work.title}</h3>
 
       {work.role || work.clientName ? (
-        <p className="mt-1 text-sm text-ink-500 dark:text-ink-400">
+        <p className="mt-1 text-sm text-ink-950 dark:text-paper-300">
           {[work.role, work.clientName].filter(Boolean).join(' · ')}
         </p>
       ) : null}

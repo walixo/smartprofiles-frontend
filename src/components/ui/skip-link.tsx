@@ -10,7 +10,7 @@ export function SkipLink({ targetId }: { targetId: string }) {
   return (
     <a
       href={`#${targetId}`}
-      className="sr-only rounded-full bg-brand-500 px-5 py-3 text-sm font-semibold text-white shadow-lifted focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100]"
+      className="sr-only rounded-none bg-brand-500 px-5 py-3 text-sm font-semibold text-white shadow-lifted focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100]"
     >
       {t('common.skipToContent')}
     </a>

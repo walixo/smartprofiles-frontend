@@ -18,7 +18,7 @@ export function ProfileCard({ profile, index }: { profile: ProfileSummary; index
     <Link
       to={`/@${profile.handle}`}
       style={{ animationDelay: `${Math.min(index, 8) * 50}ms` }}
-      className="animate-fade-up group flex h-full flex-col rounded-4xl border border-sand-200 bg-white p-5 shadow-soft transition-shadow duration-200 hover:shadow-lifted dark:border-ink-800 dark:bg-ink-900"
+      className="animate-fade-up group flex h-full flex-col rounded-4xl border-2 edge bg-white p-5 shadow-soft transition-shadow duration-200 hover:shadow-lifted dark:bg-ink-900"
     >
       <div className="flex items-start gap-3.5">
         <span className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-accent-400 text-lg font-bold text-white">
@@ -30,10 +30,10 @@ export function ProfileCard({ profile, index }: { profile: ProfileSummary; index
         </span>
 
         <div className="min-w-0 flex-1">
-          <p className="truncate font-semibold text-ink-900 group-hover:text-brand-600 dark:text-sand-50 dark:group-hover:text-brand-400">
+          <p className="truncate font-semibold text-ink-900 group-hover:text-brand-600 dark:text-paper-50 dark:group-hover:text-brand-400">
             {profile.displayName}
           </p>
-          <p className="mt-0.5 truncate text-xs text-ink-500 dark:text-ink-400">
+          <p className="mt-0.5 truncate text-xs text-ink-950 dark:text-paper-300">
             {profile.city
               ? `${profile.city} · ${t(`country.${profile.country}` as TranslationKey)}`
               : t(`country.${profile.country}` as TranslationKey)}
@@ -58,11 +58,11 @@ export function ProfileCard({ profile, index }: { profile: ProfileSummary; index
         ) : null}
       </ul>
 
-      <div className="mt-4 flex items-center justify-between border-t border-sand-200 pt-3.5 dark:border-ink-800">
+      <div className="mt-4 flex items-center justify-between border-t-2 edge pt-3.5">
         <Badge tone={AVAILABILITY_TONE[profile.availability]}>
           {t(`availability.${profile.availability}` as TranslationKey)}
         </Badge>
-        <span className="text-xs font-medium text-ink-500 dark:text-ink-400">
+        <span className="text-xs font-medium text-ink-950 dark:text-paper-300">
           {profile.workCount === 0 ? t('browse.noWorks') : plural('browse.works', profile.workCount)}
         </span>
       </div>

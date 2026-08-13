@@ -75,15 +75,15 @@ export function WorksManager({ works }: { works: OwnerWork[] }) {
   return (
     <EditorSection title={t('editor.works.title')}>
       {works.length === 0 ? (
-        <p className="text-sm text-ink-500 dark:text-ink-400">{t('editor.works.empty')}</p>
+        <p className="text-sm text-ink-950 dark:text-paper-300">{t('editor.works.empty')}</p>
       ) : (
         <ul className="space-y-3">
           {works.map((work, index) => (
             <li
               key={work.id}
-              className="flex items-center gap-4 rounded-3xl border border-sand-200 p-3 dark:border-ink-700"
+              className="flex items-center gap-4 rounded-3xl border-2 edge p-3"
             >
-              <span className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-sand-200 text-ink-400 dark:bg-ink-800 dark:text-ink-500">
+              <span className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-paper-200 text-ink-700 dark:bg-ink-800 dark:text-ink-950">
                 {work.coverImage ? (
                   <img src={work.coverImage} alt="" className="size-full object-cover" />
                 ) : (
@@ -108,11 +108,11 @@ export function WorksManager({ works }: { works: OwnerWork[] }) {
                       visibility: work.visibility,
                     })
                   }
-                  className="block max-w-full truncate rounded text-left text-sm font-semibold text-ink-900 hover:text-brand-600 dark:text-sand-50 dark:hover:text-brand-400"
+                  className="block max-w-full truncate rounded text-left text-sm font-semibold text-ink-900 hover:text-brand-600 dark:text-paper-50 dark:hover:text-brand-400"
                 >
                   {work.title}
                 </button>
-                <p className="mt-0.5 flex items-center gap-2 text-xs text-ink-500 dark:text-ink-400">
+                <p className="mt-0.5 flex items-center gap-2 text-xs text-ink-950 dark:text-paper-300">
                   {work.year ?? '—'}
                   {work.visibility === 'hidden' ? <Badge tone="neutral">{t('editor.works.hidden')}</Badge> : null}
                 </p>
@@ -253,7 +253,7 @@ function IconAction({
       disabled={disabled}
       aria-label={label}
       title={label}
-      className="inline-flex size-8 items-center justify-center rounded-full text-ink-600 transition-colors hover:bg-ink-100 disabled:pointer-events-none disabled:opacity-30 dark:text-sand-300 dark:hover:bg-ink-800"
+      className="inline-flex size-8 items-center justify-center rounded-none text-ink-900 transition-colors hover:bg-ink-100 disabled:pointer-events-none disabled:opacity-30 dark:text-paper-200 dark:hover:bg-ink-800"
     >
       {children}
     </button>

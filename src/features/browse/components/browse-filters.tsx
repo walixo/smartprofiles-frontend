@@ -48,7 +48,7 @@ export function BrowseFilters({ value, onChange, onClear, hasFilters }: BrowseFi
   return (
     <section
       aria-label={t('browse.filter.legend')}
-      className="rounded-4xl border border-sand-200 bg-white p-5 shadow-soft dark:border-ink-800 dark:bg-ink-900"
+      className="rounded-4xl border-2 edge bg-white p-5 shadow-soft dark:bg-ink-900"
     >
       <div className="grid gap-4 lg:grid-cols-4">
         <div className="lg:col-span-4">
@@ -59,7 +59,7 @@ export function BrowseFilters({ value, onChange, onClear, hasFilters }: BrowseFi
             placeholder={t('browse.searchPlaceholder')}
             value={draft}
             onChange={(event) => setDraft(event.target.value)}
-            trailing={<SearchIcon size={18} className="mr-2 text-ink-400" />}
+            trailing={<SearchIcon size={18} className="mr-2 text-ink-700" />}
           />
         </div>
 

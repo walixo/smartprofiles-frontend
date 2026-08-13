@@ -80,14 +80,14 @@ export function ImageUploadField({
 
   return (
     <div className="space-y-2">
-      <span className="block text-sm font-semibold text-ink-800 dark:text-sand-200">{label}</span>
+      <span className="block text-sm font-semibold text-ink-950 dark:text-paper-100">{label}</span>
 
       {value ? (
-        <div className="relative overflow-hidden rounded-3xl border border-sand-300 dark:border-ink-700">
+        <div className="relative overflow-hidden rounded-3xl border-2 edge">
           <img
             src={value}
             alt={t('upload.preview')}
-            className={cn('w-full bg-sand-100 object-cover dark:bg-ink-800', previewClassName)}
+            className={cn('w-full bg-paper-100 object-cover dark:bg-ink-800', previewClassName)}
           />
           <div className="absolute right-2 top-2 flex gap-2">
             {uploadsEnabled ? (
@@ -99,7 +99,7 @@ export function ImageUploadField({
               type="button"
               onClick={() => onChange('')}
               aria-label={t('upload.remove')}
-              className="inline-flex size-9 items-center justify-center rounded-full bg-ink-950/70 text-white backdrop-blur transition-colors hover:bg-ink-950"
+              className="inline-flex size-9 items-center justify-center rounded-none bg-ink-950/70 text-white  transition-colors hover:bg-ink-950"
             >
               <CloseIcon size={16} />
             </button>
@@ -122,7 +122,7 @@ export function ImageUploadField({
             'rounded-3xl border-2 border-dashed transition-colors',
             isDragging
               ? 'border-brand-500 bg-brand-50 dark:bg-brand-950/40'
-              : 'border-sand-300 dark:border-ink-700',
+              : 'edge',
           )}
         >
           <button
@@ -137,7 +137,7 @@ export function ImageUploadField({
             {isUploading ? (
               <>
                 <SpinnerIcon size={22} className="animate-spin text-brand-500" />
-                <span className="text-sm font-medium text-ink-600 dark:text-ink-300">
+                <span className="text-sm font-medium text-ink-900 dark:text-paper-200">
                   {t('upload.uploading', { percent: progress })}
                 </span>
                 <span
@@ -145,21 +145,21 @@ export function ImageUploadField({
                   aria-valuenow={progress}
                   aria-valuemin={0}
                   aria-valuemax={100}
-                  className="mt-1 h-1.5 w-40 overflow-hidden rounded-full bg-sand-200 dark:bg-ink-800"
+                  className="mt-1 h-1.5 w-40 overflow-hidden rounded-none bg-paper-200 dark:bg-ink-800"
                 >
                   <span
-                    className="block h-full rounded-full bg-brand-500 transition-[width] duration-200"
+                    className="block h-full rounded-none bg-brand-500 transition-[width] duration-200"
                     style={{ width: `${progress}%` }}
                   />
                 </span>
               </>
             ) : (
               <>
-                <GalleryIcon size={26} className="text-ink-400 dark:text-ink-500" />
-                <span className="text-sm font-semibold text-ink-800 dark:text-sand-200">
+                <GalleryIcon size={26} className="text-ink-700 dark:text-ink-950" />
+                <span className="text-sm font-semibold text-ink-950 dark:text-paper-100">
                   {t('upload.choose')}
                 </span>
-                <span className="text-xs text-ink-500 dark:text-ink-400">{t('upload.dropHint')}</span>
+                <span className="text-xs text-ink-950 dark:text-paper-300">{t('upload.dropHint')}</span>
               </>
             )}
           </button>

@@ -53,17 +53,17 @@ export function ClaimProfileForm() {
     <Container className="py-12 sm:py-16">
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div className="animate-fade-in order-last hidden lg:block">
-          <div className="rounded-5xl bg-sand-100 p-10 dark:bg-ink-900/50">
+          <div className="rounded-5xl bg-paper-100 p-10 dark:bg-ink-900/50">
             <AuthAssembleIllustration className="w-full" />
           </div>
         </div>
 
         <form onSubmit={submit} noValidate className="animate-fade-up mx-auto w-full max-w-md space-y-6">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-sand-50">
+            <h1 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-paper-50">
               {t('editor.claim.title')}
             </h1>
-            <p className="mt-3 text-base leading-relaxed text-ink-600 dark:text-ink-300">
+            <p className="mt-3 text-base leading-relaxed text-ink-900 dark:text-paper-200">
               {t('editor.claim.subtitle')}
             </p>
           </div>

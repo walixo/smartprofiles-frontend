@@ -11,10 +11,10 @@ export function NotFoundPage() {
     <Container width="narrow" className="flex flex-col items-center py-24 text-center">
       <BrokenLinkIllustration className="w-56" />
 
-      <h1 className="mt-8 text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-sand-50">
+      <h1 className="mt-8 text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-paper-50">
         {t('notFound.title')}
       </h1>
-      <p className="mt-4 max-w-md text-lg leading-relaxed text-ink-600 dark:text-ink-300">
+      <p className="mt-4 max-w-md text-lg leading-relaxed text-ink-900 dark:text-paper-200">
         {t('notFound.body')}
       </p>
 

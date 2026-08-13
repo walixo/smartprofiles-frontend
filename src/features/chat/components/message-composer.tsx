@@ -35,7 +35,7 @@ export function MessageComposer({ onSend, isSending, autoFocus }: MessageCompose
         event.preventDefault();
         void submit();
       }}
-      className="flex items-end gap-3 border-t border-sand-200 bg-white p-4 dark:border-ink-800 dark:bg-ink-900"
+      className="flex items-end gap-3 border-t-2 edge bg-white p-4 dark:bg-ink-900"
     >
       <div className="min-w-0 flex-1">
         <label htmlFor="chat-composer" className="sr-only">
@@ -56,11 +56,11 @@ export function MessageComposer({ onSend, isSending, autoFocus }: MessageCompose
           placeholder={t('chat.compose.placeholder')}
           aria-describedby="chat-composer-hint"
           className={cn(
-            'w-full resize-none rounded-2xl border border-sand-300 bg-white px-4 py-2.5 text-[0.9375rem] text-ink-900',
-            'placeholder:text-ink-400 focus:border-brand-500 dark:border-ink-700 dark:bg-ink-950 dark:text-sand-50',
+            'w-full resize-none rounded-2xl border-2 edge bg-white px-4 py-2.5 text-[0.9375rem] text-ink-900',
+            'placeholder:text-ink-700 focus:border-brand-500 dark:bg-ink-950 dark:text-paper-50',
           )}
         />
-        <p id="chat-composer-hint" className="mt-1 text-xs text-ink-400 dark:text-ink-500">
+        <p id="chat-composer-hint" className="mt-1 text-xs text-ink-700 dark:text-ink-950">
           {t('chat.compose.hint')}
         </p>
       </div>

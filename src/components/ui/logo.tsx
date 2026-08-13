@@ -21,7 +21,8 @@ export function Logo({ className, showWordmark = true }: { className?: string; s
         focusable="false"
         className="shrink-0"
       >
-        <rect width="34" height="34" rx="11" className="fill-brand-500" />
+        <rect width="34" height="34" className="fill-brick-500" />
+        <rect x="1.5" y="1.5" width="31" height="31" fill="none" stroke="currentColor" strokeWidth="3" className="text-ink-950 dark:text-paper-100" />
         <path
           d="M22.4 11.6c-1.5-1.2-3.4-1.8-5.3-1.7-2.6.1-4.4 1.4-4.4 3.3 0 1.7 1.4 2.6 4.3 3.3 3.4.8 5.3 2.1 5.3 4.7 0 2.9-2.7 4.8-6.4 4.8-2.3 0-4.4-.7-5.9-2"
           stroke="white"
@@ -30,7 +31,7 @@ export function Logo({ className, showWordmark = true }: { className?: string; s
         />
       </svg>
       {showWordmark ? (
-        <span className="text-xl font-bold tracking-tight text-ink-900 italic dark:text-sand-50">
+        <span className="text-xl font-black uppercase tracking-tighter text-ink-950 dark:text-paper-100">
           Smart
         </span>
       ) : null}

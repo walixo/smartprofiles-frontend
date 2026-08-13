@@ -111,7 +111,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
         aria-expanded={isOpen}
         aria-controls={isOpen ? listboxId : undefined}
         aria-label={`${t('locale.change')} — ${t(languageKey(locale))}`}
-        className="inline-flex h-10 items-center gap-1.5 rounded-full px-3 text-sm font-semibold text-ink-600 transition-colors hover:bg-ink-100 hover:text-ink-900 dark:text-sand-300 dark:hover:bg-ink-800 dark:hover:text-sand-50"
+        className="inline-flex h-10 items-center gap-1.5 rounded-none px-3 text-sm font-semibold text-ink-900 transition-colors hover:bg-ink-100 hover:text-ink-900 dark:text-paper-200 dark:hover:bg-ink-800 dark:hover:text-sand-50"
       >
         <GlobeIcon size={18} />
         <span className="uppercase">{locale}</span>
@@ -124,7 +124,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
           role="listbox"
           aria-label={t('locale.label')}
           onKeyDown={onListKeyDown}
-          className="absolute right-0 z-50 mt-2 w-52 overflow-hidden rounded-3xl border border-sand-200 bg-white p-1.5 shadow-lifted dark:border-ink-800 dark:bg-ink-900"
+          className="absolute right-0 z-50 mt-2 w-52 overflow-hidden rounded-3xl border-2 edge bg-white p-1.5 shadow-lifted dark:bg-ink-900"
         >
           {LOCALES.map((code, index) => {
             const isSelected = code === locale;
@@ -142,8 +142,8 @@ export function LocaleSwitcher({ className }: { className?: string }) {
                 className={cn(
                   'flex cursor-pointer items-center justify-between rounded-2xl px-3.5 py-2.5 text-sm outline-none',
                   index === activeIndex
-                    ? 'bg-brand-50 text-brand-900 dark:bg-ink-800 dark:text-sand-50'
-                    : 'text-ink-700 dark:text-sand-200',
+                    ? 'bg-brand-50 text-brand-900 dark:bg-ink-800 dark:text-paper-50'
+                    : 'text-ink-700 dark:text-paper-100',
                 )}
               >
                 <span className={cn(isSelected && 'font-semibold')}>{t(languageKey(code))}</span>

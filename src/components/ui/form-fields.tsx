@@ -4,14 +4,13 @@ import { cn } from '@/lib/cn';
 import { CloseIcon } from './icons';
 
 const CONTROL =
-  'w-full rounded-2xl border bg-white px-4 text-[0.9375rem] text-ink-900 transition-colors duration-150 placeholder:text-ink-400 dark:bg-ink-900 dark:text-sand-50 dark:placeholder:text-ink-500';
-const CONTROL_IDLE =
-  'border-sand-300 hover:border-sand-400 focus:border-brand-500 dark:border-ink-700 dark:hover:border-ink-600 dark:focus:border-brand-500';
-const CONTROL_ERROR = 'border-danger-500 focus:border-danger-500';
+  'w-full rounded-none border-2 edge bg-paper-50 px-4 text-[0.9375rem] font-medium text-ink-950 transition-shadow duration-100 placeholder:text-ink-700 focus:shadow-hard focus:outline-none dark:bg-ink-950 dark:text-paper-100 dark:placeholder:text-ink-950';
+const CONTROL_IDLE = '';
+const CONTROL_ERROR = 'border-brick-500 shadow-hard';
 
 function Label({ htmlFor, children }: { htmlFor: string; children: ReactNode }) {
   return (
-    <label htmlFor={htmlFor} className="block text-sm font-semibold text-ink-800 dark:text-sand-200">
+    <label htmlFor={htmlFor} className="block text-xs font-black uppercase tracking-wider text-ink-950 dark:text-paper-100">
       {children}
     </label>
   );
@@ -27,7 +26,7 @@ function Feedback({ id, hint, error }: { id: string; hint?: string; error?: stri
   }
   if (hint) {
     return (
-      <p id={`${id}-hint`} className="text-sm text-ink-500 dark:text-ink-400">
+      <p id={`${id}-hint`} className="text-sm text-ink-950 dark:text-paper-300">
         {hint}
       </p>
     );
@@ -118,24 +117,24 @@ export function SwitchField({
       <label
         htmlFor={id}
         className={cn(
-          'mt-0.5 inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full p-0.5 transition-colors duration-200',
+          'mt-0.5 inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-none border-2 edge p-0.5 transition-colors duration-200',
           'peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand-500',
-          checked ? 'bg-brand-500' : 'bg-sand-300 dark:bg-ink-700',
+          checked ? 'bg-brick-500' : 'bg-paper-200 dark:bg-ink-800',
         )}
       >
         <span
           className={cn(
-            'size-5 rounded-full bg-white shadow-soft transition-transform duration-200',
+            'size-4 rounded-none border-2 edge bg-paper-50 transition-transform duration-200',
             checked && 'translate-x-5',
           )}
         />
       </label>
       <div className="min-w-0">
-        <label htmlFor={id} className="cursor-pointer text-sm font-semibold text-ink-800 dark:text-sand-200">
+        <label htmlFor={id} className="cursor-pointer text-sm font-semibold text-ink-950 dark:text-paper-100">
           {label}
         </label>
         {hint ? (
-          <p id={`${id}-hint`} className="mt-0.5 text-sm text-ink-500 dark:text-ink-400">
+          <p id={`${id}-hint`} className="mt-0.5 text-sm text-ink-950 dark:text-paper-300">
             {hint}
           </p>
         ) : null}
@@ -165,7 +164,7 @@ export function ChipToggleGroup<T extends string>({
 
   return (
     <fieldset>
-      <legend className="mb-2.5 block text-sm font-semibold text-ink-800 dark:text-sand-200">{legend}</legend>
+      <legend className="mb-2.5 block text-xs font-black uppercase tracking-wider text-ink-950 dark:text-paper-100">{legend}</legend>
       <div className="flex flex-wrap gap-2">
         {options.map((option) => {
           const isSelected = value.includes(option.value);
@@ -176,11 +175,11 @@ export function ChipToggleGroup<T extends string>({
             <label
               key={option.value}
               className={cn(
-                'cursor-pointer rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors duration-150',
+                'cursor-pointer rounded-none border-2 edge px-3.5 py-1.5 text-xs font-black uppercase tracking-wide transition-none',
                 'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-brand-500',
                 isSelected
-                  ? 'border-brand-500 bg-brand-500 text-white'
-                  : 'border-sand-300 text-ink-700 hover:border-sand-400 dark:border-ink-700 dark:text-sand-200',
+                  ? 'bg-brick-500 text-white slab'
+                  : 'bg-paper-50 text-ink-950 hover:bg-paper-200 dark:bg-ink-950 dark:text-paper-100 dark:hover:bg-ink-800',
                 isDisabled && 'cursor-not-allowed opacity-40',
               )}
             >
@@ -200,7 +199,7 @@ export function ChipToggleGroup<T extends string>({
         })}
       </div>
       {error ? (
-        <p role="alert" className="animate-fade-in mt-2 text-sm font-medium text-danger-600 dark:text-danger-400">
+        <p role="alert" className="animate-fade-in mt-2 text-sm font-bold text-brick-600 dark:text-brick-400">
           {error}
         </p>
       ) : null}
@@ -244,13 +243,13 @@ export function TagInputField({
         <ul className="flex flex-wrap gap-2 pb-1">
           {value.map((tag) => (
             <li key={tag}>
-              <span className="inline-flex items-center gap-1 rounded-full bg-sand-200 py-1 pl-3 pr-1 text-sm text-ink-800 dark:bg-ink-800 dark:text-sand-200">
+              <span className="inline-flex items-center gap-1 rounded-none bg-paper-200 py-1 pl-3 pr-1 text-sm text-ink-950 dark:bg-ink-800 dark:text-paper-100">
                 {tag}
                 <button
                   type="button"
                   onClick={() => onChange(value.filter((t) => t !== tag))}
                   aria-label={`Remove ${tag}`}
-                  className="inline-flex size-5 items-center justify-center rounded-full text-ink-500 hover:bg-ink-300/40 hover:text-ink-900 dark:hover:bg-ink-700 dark:hover:text-sand-50"
+                  className="inline-flex size-5 items-center justify-center rounded-none text-ink-950 hover:bg-ink-300/40 hover:text-ink-900 dark:hover:bg-ink-700 dark:hover:text-sand-50"
                 >
                   <CloseIcon size={13} />
                 </button>
@@ -285,8 +284,8 @@ export function TagInputField({
 /** Shared shell for the editor's collapsible-free sections. */
 export function EditorSection({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className="rounded-4xl border border-sand-200 bg-white p-6 shadow-soft sm:p-7 dark:border-ink-800 dark:bg-ink-900">
-      <h2 className="text-sm font-bold uppercase tracking-wider text-ink-500 dark:text-ink-400">{title}</h2>
+    <section className="rounded-4xl border-2 edge bg-white p-6 shadow-soft sm:p-7 dark:bg-ink-900">
+      <h2 className="border-b-2 edge pb-2 text-sm font-black uppercase tracking-widest text-ink-950 dark:text-paper-100">{title}</h2>
       <div className="mt-5 space-y-5">{children}</div>
     </section>
   );

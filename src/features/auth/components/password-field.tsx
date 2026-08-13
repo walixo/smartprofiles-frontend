@@ -59,7 +59,7 @@ export function PasswordField({
             onClick={() => setIsVisible((visible) => !visible)}
             aria-label={isVisible ? t('auth.password.hide') : t('auth.password.show')}
             aria-pressed={isVisible}
-            className="inline-flex size-9 items-center justify-center rounded-xl text-ink-500 transition-colors hover:bg-ink-100 hover:text-ink-800 dark:text-ink-400 dark:hover:bg-ink-800 dark:hover:text-sand-100"
+            className="inline-flex size-9 items-center justify-center rounded-xl text-ink-950 transition-colors hover:bg-ink-100 hover:text-ink-950 dark:text-paper-300 dark:hover:bg-ink-800 dark:hover:text-sand-100"
           >
             {isVisible ? <EyeOffIcon size={18} /> : <EyeIcon size={18} />}
           </button>
@@ -70,7 +70,7 @@ export function PasswordField({
       {showStrength && strengthValue.length > 0 ? (
         <div className="animate-fade-in space-y-1.5">
           <div
-            className="h-1.5 overflow-hidden rounded-full bg-sand-200 dark:bg-ink-800"
+            className="h-1.5 overflow-hidden rounded-none bg-paper-200 dark:bg-ink-800"
             role="progressbar"
             aria-valuenow={score}
             aria-valuemin={0}
@@ -79,14 +79,14 @@ export function PasswordField({
           >
             <div
               className={cn(
-                'h-full rounded-full transition-[width,background-color] duration-500 ease-out',
+                'h-full rounded-none transition-[width,background-color] duration-500 ease-out',
                 STRENGTH_BAR[score] ?? 'w-0',
               )}
             />
           </div>
           <p id={meterId} className="text-xs font-semibold">
-            <span className="text-ink-500 dark:text-ink-400">{t('auth.password.strength')}: </span>
-            <span className={STRENGTH_TEXT[score] ?? 'text-ink-500'}>
+            <span className="text-ink-950 dark:text-paper-300">{t('auth.password.strength')}: </span>
+            <span className={STRENGTH_TEXT[score] ?? 'text-ink-950'}>
               {t(STRENGTH_LABELS[score] ?? 'auth.password.weak')}
             </span>
           </p>

@@ -31,25 +31,20 @@ function Hero() {
 
   return (
     <section className="relative overflow-hidden">
-      {/* Warm wash that reads on both themes without a second asset. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 -top-40 h-[28rem] bg-gradient-to-b from-brand-100/70 via-sand-50/0 to-transparent dark:from-brand-950/50 dark:via-ink-950/0"
-      />
 
       <Container className="relative py-16 sm:py-24">
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_1fr]">
           <div>
-            <p className="inline-flex rounded-full bg-brand-100 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-800 dark:bg-brand-900/60 dark:text-brand-100">
+            <p className="slab inline-flex rounded-none border-2 edge bg-brick-500 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-white">
               {t('home.hero.eyebrow')}
             </p>
 
-            <h1 className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight text-ink-900 sm:text-5xl lg:text-6xl dark:text-sand-50">
+            <h1 className="mt-6 text-5xl font-black leading-[0.95] tracking-tighter text-ink-950 sm:text-6xl lg:text-7xl dark:text-paper-50">
               {t('home.hero.title')}{' '}
-              <span className="text-brand-500">{t('home.hero.titleAccent')}</span>
+              <span className="text-brick-500">{t('home.hero.titleAccent')}</span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-600 dark:text-ink-300">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-900 dark:text-paper-200">
               {t('home.hero.subtitle')}
             </p>
 
@@ -69,7 +64,7 @@ function Hero() {
 
           <ProfileShowcaseIllustration
             label={t('home.hero.illustrationAlt')}
-            className="w-full max-w-lg justify-self-center drop-shadow-xl"
+            className="w-full max-w-lg justify-self-center "
           />
         </div>
       </Container>
@@ -88,13 +83,13 @@ function Stats() {
 
   return (
     <Container className="pb-6">
-      <dl className="grid gap-4 rounded-4xl border border-sand-200 bg-white p-8 shadow-soft sm:grid-cols-3 dark:border-ink-800 dark:bg-ink-900">
+      <dl className="grid divide-y-2 divide-ink-950 rounded-none border-2 edge bg-paper-50 slab sm:grid-cols-3 sm:divide-x-2 sm:divide-y-0 dark:divide-paper-100 dark:bg-ink-900">
         {stats.map((stat) => (
-          <div key={stat.value} className="text-center">
+          <div key={stat.value} className="p-8 text-center">
             <dt className="sr-only">{t(stat.label)}</dt>
             <dd>
-              <span className="block text-4xl font-bold text-brand-500">{t(stat.value)}</span>
-              <span className="mt-1 block text-sm font-medium text-ink-600 dark:text-ink-300">
+              <span className="block text-5xl font-black text-brick-500">{t(stat.value)}</span>
+              <span className="mt-1 block text-sm font-medium text-ink-900 dark:text-paper-200">
                 {t(stat.label)}
               </span>
             </dd>
@@ -121,10 +116,10 @@ function Features() {
   return (
     <Container as="section" className="py-16 sm:py-24">
       <div className="max-w-2xl">
-        <h2 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-sand-50">
+        <h2 className="text-3xl font-black uppercase tracking-tighter text-ink-950 sm:text-4xl dark:text-paper-50">
           {t('home.features.title')}
         </h2>
-        <p className="mt-4 text-lg leading-relaxed text-ink-600 dark:text-ink-300">
+        <p className="mt-4 text-lg leading-relaxed text-ink-900 dark:text-paper-200">
           {t('home.features.subtitle')}
         </p>
       </div>
@@ -132,7 +127,7 @@ function Features() {
       <div className="mt-12 grid gap-5 @container md:grid-cols-3">
         {features.map(({ Icon, title, body }) => (
           <Card key={title} interactive>
-            <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-brand-100 text-brand-700 dark:bg-brand-900/60 dark:text-brand-200">
+            <span className="inline-flex size-12 items-center justify-center rounded-none border-2 edge bg-brick-500 text-white">
               <Icon size={23} />
             </span>
             <CardTitle className="mt-5">{t(title)}</CardTitle>
@@ -148,12 +143,12 @@ function Markets() {
   const { t } = useI18n();
 
   return (
-    <section className="border-y border-sand-200 bg-sand-100 dark:border-ink-800 dark:bg-ink-900/40">
+    <section className="border-y-4 edge bg-paper-200 dark:bg-ink-900">
       <Container className="py-16 text-center sm:py-20">
-        <h2 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-sand-50">
+        <h2 className="text-3xl font-black uppercase tracking-tighter text-ink-950 sm:text-4xl dark:text-paper-50">
           {t('home.markets.title')}
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-ink-600 dark:text-ink-300">
+        <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-ink-900 dark:text-paper-200">
           {t('home.markets.subtitle')}
         </p>
 
@@ -161,7 +156,7 @@ function Markets() {
           {COUNTRIES.map((code) => (
             <li
               key={code}
-              className="rounded-full border border-sand-300 bg-white px-5 py-2.5 text-sm font-semibold text-ink-700 dark:border-ink-700 dark:bg-ink-900 dark:text-sand-200"
+              className="rounded-none border-2 edge bg-paper-50 px-5 py-2.5 text-xs font-black uppercase tracking-wide text-ink-950 slab dark:bg-ink-950 dark:text-paper-100"
             >
               {t(`country.${code}`)}
             </li>
@@ -177,16 +172,16 @@ function FinalCta() {
 
   return (
     <Container className="py-16 sm:py-24">
-      <div className="overflow-hidden rounded-5xl bg-brand-500 px-8 py-14 text-center shadow-glow sm:px-16">
-        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+      <div className="overflow-hidden rounded-none border-4 edge bg-brick-500 px-8 py-14 text-center shadow-glow sm:px-16">
+        <h2 className="text-3xl font-black uppercase tracking-tighter text-white sm:text-5xl">
           {t('home.cta.title')}
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-white/85">
+        <p className="mx-auto mt-4 max-w-xl text-lg font-medium leading-relaxed text-white">
           {t('home.cta.body')}
         </p>
         <Link
           to="/signup"
-          className="mt-9 inline-flex h-13 items-center justify-center gap-2 rounded-full bg-white px-8 text-base font-semibold text-brand-700 transition-colors hover:bg-brand-50"
+          className="mt-9 inline-flex h-14 items-center justify-center gap-2 rounded-none border-2 edge bg-white px-8 text-base font-black uppercase tracking-wide text-ink-950 slab slab-press"
         >
           {t('home.cta.action')}
           <ArrowRightIcon size={18} />

@@ -22,7 +22,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       title={label}
       aria-label={label}
       className={cn(
-        'inline-flex size-10 items-center justify-center rounded-full text-ink-600 transition-colors hover:bg-ink-100 hover:text-ink-900 dark:text-sand-300 dark:hover:bg-ink-800 dark:hover:text-sand-50',
+        'inline-flex size-10 items-center justify-center rounded-none text-ink-900 transition-colors hover:bg-ink-100 hover:text-ink-900 dark:text-paper-200 dark:hover:bg-ink-800 dark:hover:text-sand-50',
         className,
       )}
     >

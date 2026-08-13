@@ -36,7 +36,7 @@ export function RoleSelector({ value, onChange, error, name }: RoleSelectorProps
 
   return (
     <fieldset aria-describedby={error ? errorId : undefined} aria-invalid={error ? true : undefined}>
-      <legend className="mb-2.5 block text-sm font-semibold text-ink-800 dark:text-sand-200">
+      <legend className="mb-2.5 block text-sm font-semibold text-ink-950 dark:text-paper-100">
         {t('auth.role.legend')}
       </legend>
 
@@ -52,8 +52,8 @@ export function RoleSelector({ value, onChange, error, name }: RoleSelectorProps
               className={cn(
                 'group animate-fade-up relative flex cursor-pointer gap-3 rounded-3xl border-2 p-4 transition-colors duration-200',
                 isSelected
-                  ? 'border-brand-500 bg-brand-50 dark:border-brand-500 dark:bg-brand-950/50'
-                  : 'border-sand-300 bg-white hover:border-sand-400 dark:border-ink-700 dark:bg-ink-900 dark:hover:border-ink-600',
+                  ? 'border-brand-500 bg-brand-50 dark:bg-brand-950/50'
+                  : 'edge bg-white hover:border-sand-400 dark:bg-ink-900 dark:hover:border-ink-600',
                 // The ring follows the input's focus, since the input itself is visually hidden.
                 'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-brand-500',
               )}
@@ -72,17 +72,17 @@ export function RoleSelector({ value, onChange, error, name }: RoleSelectorProps
                   'inline-flex size-10 shrink-0 items-center justify-center rounded-2xl transition-colors duration-200',
                   isSelected
                     ? 'bg-brand-500 text-white'
-                    : 'bg-sand-200 text-ink-600 dark:bg-ink-800 dark:text-sand-300',
+                    : 'bg-paper-200 text-ink-900 dark:bg-ink-800 dark:text-paper-200',
                 )}
               >
                 <Icon size={20} />
               </span>
 
               <span className="min-w-0">
-                <span className="block text-sm font-semibold text-ink-900 dark:text-sand-50">
+                <span className="block text-sm font-semibold text-ink-900 dark:text-paper-50">
                   {t(title)}
                 </span>
-                <span className="mt-0.5 block text-sm leading-snug text-ink-600 dark:text-ink-300">
+                <span className="mt-0.5 block text-sm leading-snug text-ink-900 dark:text-paper-200">
                   {t(body)}
                 </span>
               </span>

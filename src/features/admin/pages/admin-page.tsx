@@ -27,13 +27,13 @@ export function AdminPage() {
   return (
     <Container className="py-10 sm:py-14">
       <header className="animate-fade-up">
-        <h1 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-sand-50">
+        <h1 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-paper-50">
           {t('admin.title')}
         </h1>
-        <p className="mt-2 text-ink-600 dark:text-ink-300">{t('admin.subtitle')}</p>
+        <p className="mt-2 text-ink-900 dark:text-paper-200">{t('admin.subtitle')}</p>
       </header>
 
-      <div role="tablist" className="mt-7 flex flex-wrap gap-1.5 border-b border-sand-200 dark:border-ink-800">
+      <div role="tablist" className="mt-7 flex flex-wrap gap-1.5 border-b-2 edge">
         {TABS.map((name) => (
           <button
             key={name}
@@ -45,7 +45,7 @@ export function AdminPage() {
               '-mb-px rounded-t-2xl border-b-2 px-4 py-2.5 text-sm font-semibold transition-colors',
               tab === name
                 ? 'border-brand-500 text-brand-600 dark:text-brand-400'
-                : 'border-transparent text-ink-500 hover:text-ink-800 dark:text-ink-400 dark:hover:text-sand-200',
+                : 'border-transparent text-ink-950 hover:text-ink-950 dark:text-paper-300 dark:hover:text-sand-200',
             )}
           >
             {t(`admin.tab.${name}` as TranslationKey)}
@@ -103,16 +103,16 @@ function Overview() {
         <section
           key={group.title}
           style={{ animationDelay: `${index * 60}ms` }}
-          className="animate-fade-up rounded-4xl border border-sand-200 bg-white p-6 shadow-soft dark:border-ink-800 dark:bg-ink-900"
+          className="animate-fade-up rounded-4xl border-2 edge bg-white p-6 shadow-soft dark:bg-ink-900"
         >
-          <h2 className="text-sm font-bold uppercase tracking-wider text-ink-500 dark:text-ink-400">
+          <h2 className="text-sm font-bold uppercase tracking-wider text-ink-950 dark:text-paper-300">
             {t(group.title)}
           </h2>
           <dl className="mt-4 space-y-3">
             {group.items.map(([label, value]) => (
               <div key={label} className="flex items-baseline justify-between gap-3">
-                <dt className="text-sm text-ink-600 dark:text-ink-300">{t(label)}</dt>
-                <dd className="text-2xl font-bold text-ink-900 tabular-nums dark:text-sand-50">{value}</dd>
+                <dt className="text-sm text-ink-900 dark:text-paper-200">{t(label)}</dt>
+                <dd className="text-2xl font-bold text-ink-900 tabular-nums dark:text-paper-50">{value}</dd>
               </div>
             ))}
           </dl>
@@ -200,21 +200,21 @@ function UsersTab() {
         <Empty />
       ) : (
         <>
-          <p className="text-sm text-ink-500 dark:text-ink-400">
+          <p className="text-sm text-ink-950 dark:text-paper-300">
             {t('admin.results', { count: query.data.meta.total })}
           </p>
 
           <TableShell head={[t('admin.table.account'), t('admin.table.role'), t('admin.table.status'), t('admin.table.joined'), '']}>
             {query.data.users.map((row) => (
-              <tr key={row.id} className="border-t border-sand-200 dark:border-ink-800">
+              <tr key={row.id} className="border-t-2 edge">
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
                     <Avatar url={row.avatarUrl} name={row.displayName} />
                     <div className="min-w-0">
-                      <p className="truncate text-sm font-semibold text-ink-900 dark:text-sand-50">
+                      <p className="truncate text-sm font-semibold text-ink-900 dark:text-paper-50">
                         {row.displayName}
                       </p>
-                      <p className="truncate text-xs text-ink-500 dark:text-ink-400">{row.email}</p>
+                      <p className="truncate text-xs text-ink-950 dark:text-paper-300">{row.email}</p>
                     </div>
                   </div>
                 </td>
@@ -226,7 +226,7 @@ function UsersTab() {
                     {row.status === 'suspended' ? t('admin.stats.suspended') : 'Active'}
                   </Badge>
                 </td>
-                <td className="whitespace-nowrap px-4 py-3 text-sm text-ink-500 dark:text-ink-400">
+                <td className="whitespace-nowrap px-4 py-3 text-sm text-ink-950 dark:text-paper-300">
                   {formatDate(row.createdAt)}
                 </td>
                 <td className="px-4 py-3 text-right">
@@ -234,7 +234,7 @@ function UsersTab() {
                     {row.handle ? (
                       <Link
                         to={`/@${row.handle}`}
-                        className="rounded-full px-3 py-1.5 text-sm font-semibold text-brand-600 hover:bg-brand-50 dark:text-brand-400 dark:hover:bg-ink-800"
+                        className="rounded-none px-3 py-1.5 text-sm font-semibold text-brand-600 hover:bg-brand-50 dark:text-brand-400 dark:hover:bg-ink-800"
                       >
                         {t('admin.action.view')}
                       </Link>
@@ -315,7 +315,7 @@ function ProfilesTab() {
         <Empty />
       ) : (
         <>
-          <p className="text-sm text-ink-500 dark:text-ink-400">
+          <p className="text-sm text-ink-950 dark:text-paper-300">
             {t('admin.results', { count: query.data.meta.total })}
           </p>
 
@@ -330,15 +330,15 @@ function ProfilesTab() {
             ]}
           >
             {query.data.profiles.map((row) => (
-              <tr key={row.id} className="border-t border-sand-200 dark:border-ink-800">
+              <tr key={row.id} className="border-t-2 edge">
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
                     <Avatar url={row.avatarUrl} name={row.displayName} />
                     <div className="min-w-0">
-                      <p className="truncate text-sm font-semibold text-ink-900 dark:text-sand-50">
+                      <p className="truncate text-sm font-semibold text-ink-900 dark:text-paper-50">
                         @{row.handle}
                       </p>
-                      <p className="truncate text-xs text-ink-500 dark:text-ink-400">{row.headline}</p>
+                      <p className="truncate text-xs text-ink-950 dark:text-paper-300">{row.headline}</p>
                     </div>
                   </div>
                 </td>
@@ -347,16 +347,16 @@ function ProfilesTab() {
                     {t(`visibility.${row.visibility}` as TranslationKey)}
                   </Badge>
                 </td>
-                <td className="px-4 py-3 text-sm tabular-nums text-ink-600 dark:text-ink-300">{row.viewCount}</td>
-                <td className="px-4 py-3 text-sm tabular-nums text-ink-600 dark:text-ink-300">{row.workCount}</td>
-                <td className="whitespace-nowrap px-4 py-3 text-sm text-ink-500 dark:text-ink-400">
+                <td className="px-4 py-3 text-sm tabular-nums text-ink-900 dark:text-paper-200">{row.viewCount}</td>
+                <td className="px-4 py-3 text-sm tabular-nums text-ink-900 dark:text-paper-200">{row.workCount}</td>
+                <td className="whitespace-nowrap px-4 py-3 text-sm text-ink-950 dark:text-paper-300">
                   {formatDate(row.updatedAt)}
                 </td>
                 <td className="px-4 py-3 text-right">
                   <div className="flex items-center justify-end gap-1.5">
                     <Link
                       to={`/@${row.handle}`}
-                      className="rounded-full px-3 py-1.5 text-sm font-semibold text-brand-600 hover:bg-brand-50 dark:text-brand-400 dark:hover:bg-ink-800"
+                      className="rounded-none px-3 py-1.5 text-sm font-semibold text-brand-600 hover:bg-brand-50 dark:text-brand-400 dark:hover:bg-ink-800"
                     >
                       {t('admin.action.view')}
                     </Link>
@@ -395,7 +395,7 @@ function Filters({
   children: React.ReactNode;
 }) {
   return (
-    <section className="grid gap-4 rounded-4xl border border-sand-200 bg-white p-5 shadow-soft sm:grid-cols-3 dark:border-ink-800 dark:bg-ink-900">
+    <section className="grid gap-4 rounded-4xl border-2 edge bg-white p-5 shadow-soft sm:grid-cols-3 dark:bg-ink-900">
       <div className="sm:col-span-1">
         <TextField
           id="admin-search"
@@ -403,7 +403,7 @@ function Filters({
           label={searchLabel}
           value={q}
           onChange={(event) => onQ(event.target.value)}
-          trailing={<SearchIcon size={18} className="mr-2 text-ink-400" />}
+          trailing={<SearchIcon size={18} className="mr-2 text-ink-700" />}
         />
       </div>
       {children}
@@ -414,7 +414,7 @@ function Filters({
 function TableShell({ head, children }: { head: string[]; children: React.ReactNode }) {
   return (
     // Tables do not reflow; the container scrolls rather than the page.
-    <div className="overflow-x-auto rounded-4xl border border-sand-200 bg-white shadow-soft dark:border-ink-800 dark:bg-ink-900">
+    <div className="overflow-x-auto rounded-4xl border-2 edge bg-white shadow-soft dark:bg-ink-900">
       <table className="w-full min-w-[46rem] text-left">
         <thead>
           <tr>
@@ -422,7 +422,7 @@ function TableShell({ head, children }: { head: string[]; children: React.ReactN
               <th
                 key={index}
                 scope="col"
-                className="px-4 py-3 text-xs font-bold uppercase tracking-wider text-ink-500 dark:text-ink-400"
+                className="px-4 py-3 text-xs font-bold uppercase tracking-wider text-ink-950 dark:text-paper-300"
               >
                 {label}
               </th>
@@ -469,7 +469,7 @@ function Pager({
       <Button variant="outline" size="sm" disabled={page <= 1} onClick={() => onPage(page - 1)}>
         {t('browse.page.previous')}
       </Button>
-      <span className="text-sm text-ink-600 dark:text-ink-300">
+      <span className="text-sm text-ink-900 dark:text-paper-200">
         {t('browse.page.indicator', { page, total: meta.totalPages })}
       </span>
       <Button variant="outline" size="sm" disabled={!meta.hasMore} onClick={() => onPage(page + 1)}>
@@ -482,7 +482,7 @@ function Pager({
 function Pending() {
   return (
     <div className="flex min-h-48 items-center justify-center">
-      <SpinnerIcon size={20} className="animate-spin text-ink-400" />
+      <SpinnerIcon size={20} className="animate-spin text-ink-700" />
     </div>
   );
 }
@@ -490,7 +490,7 @@ function Pending() {
 function Empty() {
   const { t } = useI18n();
   return (
-    <p className="rounded-4xl border border-dashed border-sand-300 py-16 text-center text-sm text-ink-500 dark:border-ink-700 dark:text-ink-400">
+    <p className="rounded-4xl border border-2 border-dashed edge py-16 text-center text-sm text-ink-950 dark:text-paper-300">
       {t('admin.empty')}
     </p>
   );

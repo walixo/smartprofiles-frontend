@@ -60,11 +60,11 @@ export function ShareDialog({ isOpen, onClose, handle, displayName }: ShareDialo
 
   return (
     <Dialog isOpen={isOpen} onClose={onClose} title={t('profile.share.title')} description={t('profile.share.body')}>
-      <div className="rounded-3xl border border-sand-200 bg-sand-50 p-5 dark:border-ink-700 dark:bg-ink-950">
+      <div className="rounded-3xl border-2 edge bg-paper-50 p-5 dark:bg-ink-950">
         <QrCode value={qrUrl} title={`${t('profile.share.title')} — ${displayName}`} className="mx-auto max-w-56" />
       </div>
 
-      <p className="mt-4 truncate rounded-2xl bg-sand-100 px-4 py-3 text-center text-sm font-medium text-ink-700 dark:bg-ink-800 dark:text-sand-200">
+      <p className="mt-4 truncate rounded-2xl bg-paper-100 px-4 py-3 text-center text-sm font-medium text-ink-700 dark:bg-ink-800 dark:text-paper-100">
         {url.replace(/^https?:\/\//, '')}
       </p>
 

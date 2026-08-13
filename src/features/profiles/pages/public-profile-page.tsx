@@ -37,7 +37,7 @@ export function PublicProfilePage() {
   if (isPending) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="flex items-center gap-3 text-sm font-medium text-ink-500 dark:text-ink-400">
+        <span className="flex items-center gap-3 text-sm font-medium text-ink-950 dark:text-paper-300">
           <SpinnerIcon size={18} className="animate-spin" />
           {t('common.loading')}
         </span>
@@ -63,7 +63,7 @@ function ProfileView({ profile }: { profile: PublicProfile }) {
           <div className="min-w-0">
             <header className="animate-fade-up">
               <div className="flex flex-wrap items-center gap-3">
-                <h1 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-sand-50">
+                <h1 className="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-paper-50">
                   {profile.displayName}
                 </h1>
                 <Badge tone={AVAILABILITY_TONE[profile.availability]}>
@@ -75,7 +75,7 @@ function ProfileView({ profile }: { profile: PublicProfile }) {
                 {profile.headline}
               </p>
 
-              <p className="mt-2 text-sm text-ink-500 dark:text-ink-400">
+              <p className="mt-2 text-sm text-ink-950 dark:text-paper-300">
                 {profile.city
                   ? `${t('profile.basedIn', { city: profile.city })} · ${t(`country.${profile.country}` as TranslationKey)}`
                   : t(`country.${profile.country}` as TranslationKey)}
@@ -100,7 +100,7 @@ function ProfileView({ profile }: { profile: PublicProfile }) {
 
             <Section title={t('profile.section.work')}>
               {profile.works.length === 0 ? (
-                <p className="text-sm text-ink-500 dark:text-ink-400">{t('profile.work.empty')}</p>
+                <p className="text-sm text-ink-950 dark:text-paper-300">{t('profile.work.empty')}</p>
               ) : (
                 <div className="grid gap-6 @container sm:grid-cols-2">
                   {profile.works.map((work, index) => (
@@ -116,7 +116,7 @@ function ProfileView({ profile }: { profile: PublicProfile }) {
                   {profile.skills.map((skill) => (
                     <li
                       key={skill}
-                      className="rounded-full border border-sand-300 px-3.5 py-1.5 text-sm text-ink-700 dark:border-ink-700 dark:text-sand-200"
+                      className="rounded-none border-2 edge px-3.5 py-1.5 text-sm text-ink-700 dark:text-paper-100"
                     >
                       {skill}
                     </li>
@@ -127,8 +127,8 @@ function ProfileView({ profile }: { profile: PublicProfile }) {
           </div>
 
           <aside className="lg:sticky lg:top-24 lg:self-start">
-            <div className="animate-fade-up rounded-4xl border border-sand-200 bg-white p-6 shadow-soft dark:border-ink-800 dark:bg-ink-900">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-ink-500 dark:text-ink-400">
+            <div className="animate-fade-up rounded-4xl border-2 edge bg-white p-6 shadow-soft dark:bg-ink-900">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-ink-950 dark:text-paper-300">
                 {t('profile.contact.title')}
               </h2>
 
@@ -169,7 +169,7 @@ function ProfileView({ profile }: { profile: PublicProfile }) {
                 ) : null}
 
                 {!profile.contact.allowChat && !profile.contact.phoneAvailable ? (
-                  <p className="text-sm text-ink-500 dark:text-ink-400">
+                  <p className="text-sm text-ink-950 dark:text-paper-300">
                     {t('profile.contact.noneAvailable')}
                   </p>
                 ) : null}
@@ -180,28 +180,28 @@ function ProfileView({ profile }: { profile: PublicProfile }) {
               </div>
 
               {profile.rate ? (
-                <div className="mt-6 border-t border-sand-200 pt-5 dark:border-ink-800">
-                  <p className="text-xs font-bold uppercase tracking-wider text-ink-500 dark:text-ink-400">
+                <div className="mt-6 border-t-2 edge pt-5">
+                  <p className="text-xs font-bold uppercase tracking-wider text-ink-950 dark:text-paper-300">
                     {t('profile.rate.label')}
                   </p>
-                  <p className="mt-1.5 text-lg font-semibold text-ink-900 dark:text-sand-50">
+                  <p className="mt-1.5 text-lg font-semibold text-ink-900 dark:text-paper-50">
                     <RateValue rate={profile.rate} />
                   </p>
                 </div>
               ) : null}
 
               {profile.languages.length > 0 ? (
-                <div className="mt-6 border-t border-sand-200 pt-5 dark:border-ink-800">
-                  <p className="text-xs font-bold uppercase tracking-wider text-ink-500 dark:text-ink-400">
+                <div className="mt-6 border-t-2 edge pt-5">
+                  <p className="text-xs font-bold uppercase tracking-wider text-ink-950 dark:text-paper-300">
                     {t('profile.section.languages')}
                   </p>
                   <ul className="mt-2.5 space-y-1.5">
                     {profile.languages.map((language) => (
                       <li key={language.code} className="flex justify-between gap-3 text-sm">
-                        <span className="text-ink-700 dark:text-sand-200">
+                        <span className="text-ink-700 dark:text-paper-100">
                           {t(`lang.${language.code}` as TranslationKey)}
                         </span>
-                        <span className="text-ink-500 dark:text-ink-400">
+                        <span className="text-ink-950 dark:text-paper-300">
                           {t(`languageLevel.${language.level}` as TranslationKey)}
                         </span>
                       </li>
@@ -211,8 +211,8 @@ function ProfileView({ profile }: { profile: PublicProfile }) {
               ) : null}
 
               {profile.links.length > 0 ? (
-                <div className="mt-6 border-t border-sand-200 pt-5 dark:border-ink-800">
-                  <p className="text-xs font-bold uppercase tracking-wider text-ink-500 dark:text-ink-400">
+                <div className="mt-6 border-t-2 edge pt-5">
+                  <p className="text-xs font-bold uppercase tracking-wider text-ink-950 dark:text-paper-300">
                     {t('profile.section.links')}
                   </p>
                   <ul className="mt-2.5 space-y-1">
@@ -234,7 +234,7 @@ function ProfileView({ profile }: { profile: PublicProfile }) {
               ) : null}
             </div>
 
-            <p className="mt-4 text-center text-xs text-ink-400 dark:text-ink-500">
+            <p className="mt-4 text-center text-xs text-ink-700 dark:text-ink-950">
               smartprofiles.eu/@{profile.handle}
             </p>
           </aside>
@@ -261,7 +261,7 @@ function ProfileView({ profile }: { profile: PublicProfile }) {
 function Cover({ profile }: { profile: PublicProfile }) {
   return (
     <div className="relative">
-      <div className="h-40 w-full overflow-hidden bg-gradient-to-br from-brand-400 via-brand-500 to-accent-500 sm:h-56">
+      <div className="h-40 w-full overflow-hidden border-b-4 edge bg-brick-500 sm:h-56">
         {profile.coverUrl ? (
           <img src={profile.coverUrl} alt="" className="size-full object-cover" />
         ) : null}
@@ -306,7 +306,7 @@ function RateValue({ rate }: { rate: NonNullable<PublicProfile['rate']> }) {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mt-12">
-      <h2 className="text-sm font-bold uppercase tracking-wider text-ink-500 dark:text-ink-400">
+      <h2 className="text-sm font-bold uppercase tracking-wider text-ink-950 dark:text-paper-300">
         {title}
       </h2>
       <div className="mt-4">{children}</div>
@@ -320,10 +320,10 @@ function ProfileMissing() {
   return (
     <Container width="narrow" className="flex flex-col items-center py-24 text-center">
       <BrokenLinkIllustration className="w-52" />
-      <h1 className="mt-8 text-3xl font-bold tracking-tight text-ink-900 dark:text-sand-50">
+      <h1 className="mt-8 text-3xl font-bold tracking-tight text-ink-900 dark:text-paper-50">
         {t('profile.notFound.title')}
       </h1>
-      <p className="mt-4 max-w-md text-lg leading-relaxed text-ink-600 dark:text-ink-300">
+      <p className="mt-4 max-w-md text-lg leading-relaxed text-ink-900 dark:text-paper-200">
         {t('profile.notFound.body')}
       </p>
       <Link to="/" className={buttonClasses('primary', 'lg', 'mt-9')}>

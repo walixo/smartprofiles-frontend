@@ -60,7 +60,7 @@ function renderInline(text: string): ReactNode {
 
     if (token.startsWith('`') && token.endsWith('`') && token.length > 2) {
       return (
-        <code key={index} className="rounded bg-sand-200 px-1.5 py-0.5 text-[0.85em] dark:bg-ink-800">
+        <code key={index} className="rounded bg-paper-200 px-1.5 py-0.5 text-[0.85em] dark:bg-ink-800">
           {token.slice(1, -1)}
         </code>
       );

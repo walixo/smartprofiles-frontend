@@ -4,14 +4,19 @@ import { AlertIcon, CheckIcon, InfoIcon } from './icons';
 
 export type AlertTone = 'info' | 'success' | 'warning' | 'danger';
 
+/**
+ * Hard-edged notice bar.
+ *
+ * With no third hue, tone is signalled by fill weight: danger is solid brick,
+ * success solid black, warning a brick tint, info plain paper. The icon and the
+ * message carry the meaning, so a reader who cannot distinguish the fills still
+ * gets the same information.
+ */
 const TONES: Record<AlertTone, string> = {
-  info: 'border-info-200 bg-info-50 text-info-900 dark:border-info-800 dark:bg-info-950 dark:text-info-100',
-  success:
-    'border-success-200 bg-success-50 text-success-900 dark:border-success-800 dark:bg-success-950 dark:text-success-100',
-  warning:
-    'border-warning-100 bg-warning-50 text-warning-900 dark:border-accent-800 dark:bg-accent-950 dark:text-accent-100',
-  danger:
-    'border-danger-100 bg-danger-50 text-danger-900 dark:border-brand-800 dark:bg-brand-950 dark:text-brand-100',
+  danger: 'bg-brick-500 text-white',
+  success: 'bg-ink-950 text-white dark:bg-paper-100 dark:text-ink-950',
+  warning: 'bg-brick-100 text-brick-900',
+  info: 'bg-paper-50 text-ink-950 dark:bg-ink-900 dark:text-paper-100',
 };
 
 const ICONS: Record<AlertTone, typeof InfoIcon> = {
@@ -35,11 +40,11 @@ export function Alert({ tone = 'info', title, children, className }: AlertProps)
     <div
       // Errors interrupt; everything else is announced politely.
       role={tone === 'danger' ? 'alert' : 'status'}
-      className={cn('flex gap-3 rounded-3xl border p-4', TONES[tone], className)}
+      className={cn('flex gap-3 rounded-none border-2 edge p-4 slab', TONES[tone], className)}
     >
-      <IconComponent size={20} className="mt-0.5 shrink-0" />
-      <div className="min-w-0 text-sm">
-        {title ? <p className="font-semibold">{title}</p> : null}
+      <IconComponent size={20} className="mt-0.5 shrink-0" strokeWidth={2.5} />
+      <div className="min-w-0 text-sm font-medium">
+        {title ? <p className="font-black uppercase tracking-wide">{title}</p> : null}
         <div className={cn(title && 'mt-0.5', 'leading-relaxed')}>{children}</div>
       </div>
     </div>

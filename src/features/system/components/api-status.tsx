@@ -37,8 +37,8 @@ export function ApiStatus() {
       <span
         className={
           isConnected
-            ? 'size-2 rounded-full bg-success-500 dark:bg-success-300'
-            : 'size-2 rounded-full bg-warning-500'
+            ? 'size-2 rounded-none bg-success-500 dark:bg-success-300'
+            : 'size-2 rounded-none bg-warning-500'
         }
       />
       API · {data.environment} · {data.database}
